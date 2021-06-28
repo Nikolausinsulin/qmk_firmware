@@ -118,6 +118,8 @@ void matrix_scan_user(void) {
   }
 } 
 
+
+// when adding combos change combocount in config.h
 /*
 enum combos {
   //backspaceCombo,
