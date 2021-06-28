@@ -150,8 +150,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NO_ACTION_FUNCTION
 
 /* Bootmagic Lite key configuration */
-//#define BOOTMAGIC_LITE_ROW 0
-//#define BOOTMAGIC_LITE_COLUMN 0
+#define BOOTMAGIC_LITE_ROW 0
+#define BOOTMAGIC_LITE_COLUMN 0
 
 
 
@@ -166,3 +166,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NO_AUTO_SHIFT_NUMERIC
 #define LEADER_TIMEOUT 300
 #define LEADER_PER_KEY_TIMING
+
+#define BOOTMAGIC_LITE_ROW_LEFT 0
+#define BOOTMAGIC_LITE_COLUMN_LEFT 0
