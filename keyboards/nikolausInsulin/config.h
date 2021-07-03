@@ -164,7 +164,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define AUTO_SHIFT_TIMEOUT 150
 #define NO_AUTO_SHIFT_SPECIAL
 #define NO_AUTO_SHIFT_NUMERIC
-#define LEADER_TIMEOUT 300
+#define LEADER_TIMEOUT 400
 #define LEADER_PER_KEY_TIMING
 
 #define BOOTMAGIC_LITE_ROW_LEFT 0
