@@ -163,6 +163,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_LCTRL,         KC_LWIN,            KC_LALT,    DE_Y,           KC_P,    DE_Z,                                      KC_B,           KC_M,   KC_COMMA,   KC_DOT,     KC_J,   KC_TRNS, 
                                                                      OSL(2),    TD(tapdanceSpace),   KC_DOWN,          KC_LEAD, KC_BSPACE, OSL(1)
   ), 
+// special signs layer
 [1] = LAYOUT(
     KC_TRNS,            KC_TRNS,            DE_UNDS,           DE_LBRC,            DE_RBRC,             CIRCUM,                                   DE_EXLM,        DE_LESS,      DE_MORE,     DE_EQL,   DE_AMPR,            KC_TRNS,
     KC_TRNS,            DE_BSLS,            DE_SLSH,           DE_LCBR,            DE_RCBR,             DE_ASTR,                                   DE_QST,         DE_LPRN,      DE_RPRN,     DE_MINS,  DE_COLN,            KC_TRNS,
@@ -171,12 +172,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ), 
 // numpad and arrows layer
 [2] = LAYOUT(
-    KC_TRNS,            DE_UE,            KC_TRNS,    DE_AE,        KC_TRNS, DE_OE,                                   DE_SS,        KC_7,     KC_8,   KC_9,  KC_TRNS, KC_TRNS,
+    KC_TRNS,            KC_TRNS,            KC_TRNS,    KC_TRNS,        KC_TRNS, KC_TRNS,                                   KC_TRNS,        KC_7,     KC_8,   KC_9,  KC_TRNS, KC_TRNS,
     KC_TRNS,            KC_LEFT,            KC_DOWN,    KC_UP,          KC_RIGHT, KC_TRNS,                                   KC_TRNS,        KC_4,     KC_5,   KC_6,  KC_TRNS, KC_TRNS,
     KC_TRNS,            KC_TRNS,            KC_TRNS,    KC_TRNS,        KC_TRNS, KC_TRNS,                                   KC_TRNS,        KC_1,     KC_2,   KC_3,  KC_TRNS, KC_TRNS,
                                                                 KC_TRNS,    KC_TRNS,    KC_TRNS,         KC_TRNS,    KC_0,   KC_DOT
 ), 
-// umlaut layer
+// umlaut layer currently not in use
 [3] = LAYOUT(
     KC_TRNS,            KC_TRNS,            KC_TRNS,    KC_TRNS,        KC_TRNS, KC_TRNS,                                   KC_TRNS,        KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,
     KC_TRNS,            DE_UE,            KC_TRNS,    DE_AE,        KC_TRNS, DE_OE,                                   DE_SS,        KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,
