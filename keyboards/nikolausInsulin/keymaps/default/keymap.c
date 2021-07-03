@@ -107,8 +107,26 @@ void matrix_scan_user(void) {
       // Anything you can do in a macro.
       SEND_STRING("QMK is awesome.");
     }
-    SEQ_TWO_KEYS(KC_D, KC_D) {
-      SEND_STRING(SS_LCTL("a") SS_LCTL("c"));
+    SEQ_ONE_KEY(KC_U) {
+      // Anything you can do in a macro.
+      SEND_STRING(SS_TAP(X_LBRC));
+    }
+    SEQ_ONE_KEY(KC_A) {
+      // Anything you can do in a macro.
+      SEND_STRING(SS_TAP(X_QUOT));
+    }
+    SEQ_ONE_KEY(KC_O) {
+      // Anything you can do in a macro.
+      SEND_STRING(SS_TAP(X_SCLN));
+    }
+    SEQ_ONE_KEY(KC_S) {
+      // Anything you can do in a macro.
+      SEND_STRING(SS_TAP(X_MINS));
+    }
+    
+    SEQ_TWO_KEYS(KC_S, KC_S) {
+      //SEND_STRING(SS_LWIN(X_PSCREEN)); 
+      SEND_STRING("screenshot pls");
     }
     
     SEQ_FOUR_KEYS(KC_A, KC_N, KC_K, KC_I) {
