@@ -104,33 +104,59 @@ void matrix_scan_user(void) {
     leader_end();
 
     SEQ_ONE_KEY(KC_F) {
-      // Anything you can do in a macro.
-      SEND_STRING("QMK is awesome.");
+      // search via ctrl f
+      SEND_STRING(SS_LCTL("f"));
     }
+    // umlaute und scharfes S
     SEQ_ONE_KEY(KC_U) {
-      // Anything you can do in a macro.
       SEND_STRING(SS_TAP(X_LBRC));
     }
     SEQ_ONE_KEY(KC_A) {
-      // Anything you can do in a macro.
       SEND_STRING(SS_TAP(X_QUOT));
     }
     SEQ_ONE_KEY(KC_O) {
-      // Anything you can do in a macro.
       SEND_STRING(SS_TAP(X_SCLN));
     }
     SEQ_ONE_KEY(KC_S) {
-      // Anything you can do in a macro.
       SEND_STRING(SS_TAP(X_MINS));
     }
     
     SEQ_TWO_KEYS(KC_S, KC_S) {
+      // make windows screenshot
       //SEND_STRING(SS_LWIN(X_PSCREEN)); 
+      // TODO: make this work
       SEND_STRING("screenshot pls");
     }
+    // browser commands
+    SEQ_TWO_KEYS(KC_T, KC_N) {
+      // tab new
+      SEND_STRING(SS_LCTL("t"));
+    }
+    SEQ_TWO_KEYS(KC_T, KC_C) {
+      // tab close
+      SEND_STRING(SS_LCTL("w"));
+    }
+    SEQ_TWO_KEYS(KC_T, KC_L) {
+      // tab left
+      SEND_STRING(SS_LCTL(SS_TAP(X_PGUP)));
+    }
+    SEQ_TWO_KEYS(KC_T, KC_R) {
+      // tab right
+      SEND_STRING(SS_LCTL(SS_TAP(X_PGDOWN)));
+    }
+    SEQ_FOUR_KEYS(KC_B, KC_O, KC_O, KC_K) {
+      // bookmark 
+      SEND_STRING(SS_LCTL("d"));
+    }
     
+
     SEQ_FOUR_KEYS(KC_A, KC_N, KC_K, KC_I) {
+      // anki layer
       layer_on(4);
+    }
+    SEQ_THREE_KEYS(KC_N, KC_A, KC_V) {
+      // nav layer
+      layer_on(5);
     }
 
   }
@@ -190,54 +216,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRNS,            KC_1,               KC_2,       KC_3,           KC_4,    KC_5,                                      KC_TRNS,        KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,
     KC_TRNS,            KC_TRNS,            KC_TRNS,    KC_TRNS,        KC_TRNS, KC_TRNS,                                   KC_TRNS,        KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,
                                                                             KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,   KC_TRNS
+), 
+// nav layer 
+[5] = LAYOUT(
+    TO(0),              KC_TRNS,            KC_TRNS,    KC_TRNS,        KC_TRNS, KC_TRNS,                                   KC_TRNS,        KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS,            KC_TRNS,            KC_TRNS,    KC_TRNS,        KC_TRNS, KC_TRNS,                                   KC_TRNS,        KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS,            KC_TRNS,            KC_TRNS,    KC_TRNS,        KC_TRNS, KC_TRNS,                                   KC_TRNS,        KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,
+                                                                            KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,   KC_TRNS
 )
   };
 
-/*
-const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-[0] = LAYOUT(
-      KC_ESC,           KC_X,               KC_V,       KC_L,           KC_C,    KC_W,                                      KC_K,           KC_H,   KC_G,       KC_F,       KC_Q,   KC_MS_BTN1, 
-      KC_TAB,           KC_U,               KC_I,       KC_A,           KC_E,    KC_O,                                      KC_S,           KC_N,   KC_R,       KC_T,       KC_D,   KC_MS_BTN2, 
-      KC_LCTRL,         KC_LWIN,            KC_LALT,    DE_Y,           KC_P,    DE_Z,                                      KC_B,           KC_M,   KC_COMMA,   KC_DOT,     KC_J,   KC_MS_BTN3, 
-                                                                     KC_UP,    TD(tapdanceSpace),   KC_DOWN,      OSL(2), OSL(1), OSM(MOD_LSFT)
-  ), 
-[1] = LAYOUT(
-    KC_TRNS,            KC_TRNS,            DE_UNDS,           DE_LBRC,            DE_RBRC,             DE_CIRC,                                   DE_EXLM,        DE_LESS,      DE_MORE,     DE_EQL,   DE_AMPR,            KC_TRNS,
-    KC_TRNS,            DE_BSLS,            DE_SLSH,           DE_LCBR,            DE_RCBR,             DE_ASTR,                                   DE_QST,         DE_LPRN,      DE_RPRN,     DE_MINS,  DE_COLN,            KC_TRNS,
-    KC_TRNS,            DE_HASH,            DE_DLR,            DE_PIPE,            KC_TRNS,             KC_TRNS,                                   DE_PLUS,        DE_PERC,      DE_DQOT,     DE_QUOT,  DE_SCLN,            KC_TRNS,
-                                                                            KC_LEFT,    KC_TRNS,    KC_RIGHT,                      KC_TRNS,    KC_TRNS,   KC_TRNS
-), 
-[2] = LAYOUT(
-    KC_TRNS,            KC_TRNS,            KC_7,    KC_8,        KC_9, KC_TRNS,                                   KC_TRNS,        KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS,            KC_TRNS,            KC_4,    KC_5,        KC_6, KC_TRNS,                                   KC_TRNS,        KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS,            KC_TRNS,            KC_1,    KC_2,        KC_3, KC_TRNS,                                   KC_TRNS,        KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,
-                                                                KC_BSPACE,    KC_0,    KC_DELETE,         KC_TRNS,    KC_TRNS,   KC_TRNS
-)
-  };
-*/
-
-/*
-const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-[0] = LAYOUT(
-      KC_ESC,           KC_X,               KC_V,       KC_L,           KC_C,    KC_W,                                      KC_K,           KC_H,   KC_G,       KC_F,   KC_Q, OSL(2), 
-      OSM(MOD_LSFT),    TD(tapdanceU),      KC_I,       TD(tapdanceA),  KC_E,    TD(tapdanceO),                             TD(tapdanceS),  KC_N,   KC_R,       KC_T,   KC_D, OSL(1), 
-      KC_LCTRL,         KC_LWIN,            KC_LALT,    KC_Y,           KC_P,    KC_Z,                                      KC_B,           KC_M,   KC_COMMA,   KC_DOT, KC_J, TO(0), 
-                                                                            KC_LEFT,    KC_SPACE,   KC_UP,      KC_DOWN, KC_ENTER, KC_RIGHT
-  ), 
-[1] = LAYOUT(
-    KC_TRNS,            KC_TRNS,            DE_UNDS,           DE_LBRC,            DE_RBRC,             KC_TRNS,                                   DE_EXLM,        DE_LESS,      DE_MORE,     DE_EQL,   DE_AMPR,            KC_TRNS,
-    KC_TRNS,            DE_BSLS,            DE_SLSH,           DE_LCBR,            DE_RCBR,             DE_ASTR,                                   DE_QST,         DE_LPRN,      DE_RPRN,     DE_MINS,  DE_COLN,            KC_TRNS,
-    KC_TRNS,            DE_HASH,            DE_DLR,            DE_PIPE,            KC_TRNS,             KC_TRNS,                                   DE_PLUS,        DE_PERC,      DE_DQOT,     DE_QUOT,  DE_SCLN,            KC_TRNS,
-                                                                            KC_TRNS,    KC_TRNS,    KC_TRNS,                      KC_TRNS,    KC_TRNS,   KC_TRNS
-), 
-[2] = LAYOUT(
-    KC_TRNS,            KC_TRNS,            KC_TRNS,    KC_TRNS,        KC_TRNS, KC_TRNS,                                   KC_TRNS,        KC_7, KC_8,   KC_9, KC_TRNS, KC_TRNS,
-    KC_TRNS,            KC_TRNS,            KC_TRNS,    KC_TRNS,        KC_TRNS, KC_TRNS,                                   KC_TRNS,        KC_4, KC_5,   KC_6, KC_TRNS, KC_TRNS,
-    KC_TRNS,            KC_TRNS,            KC_TRNS,    KC_TRNS,        KC_TRNS, KC_TRNS,                                   KC_TRNS,        KC_1, KC_2,   KC_3, KC_TRNS, KC_TRNS,
-                                                                            KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,   KC_0
-)
-  };
-*/
 
 /* 
 [1] = LAYOUT(
