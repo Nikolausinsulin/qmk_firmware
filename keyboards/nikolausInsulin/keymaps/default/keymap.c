@@ -128,6 +128,14 @@ void matrix_scan_user(void) {
       SEND_STRING("screenshot pls");
     }
     // browser commands
+    SEQ_ONE_KEY(KC_U) {
+      // search via ctrl f
+      SEND_STRING(SS_LALT(SS_TAP(X_LEFT)));
+    }
+    SEQ_ONE_KEY(KC_E) {
+      // search via ctrl f
+      SEND_STRING(SS_LALT(SS_TAP(X_RIGHT)));
+    }
     SEQ_TWO_KEYS(KC_T, KC_N) {
       // tab new
       SEND_STRING(SS_LCTL("t"));
