@@ -467,10 +467,10 @@ void s_reset(qk_tap_dance_state_t *state, void *user_data) {
 void space_finished(qk_tap_dance_state_t *state, void *user_data) {
     spacetap_state.state = cur_dance(state);
     switch (spacetap_state.state) {
-        case TD_SINGLE_TAP: register_code(KC_SPACE); break;
-        case TD_SINGLE_HOLD: register_code(KC_ENTER); break;
-        case TD_DOUBLE_TAP: register_code(KC_SPACE); register_code(KC_SPACE); break;
-        case TD_DOUBLE_HOLD: register_code(KC_SPACE); break;
+        case TD_SINGLE_TAP: tap_code(KC_SPACE); break;
+        case TD_SINGLE_HOLD: tap_code(KC_ENTER); break;
+        case TD_DOUBLE_TAP: tap_code(KC_SPACE); tap_code(KC_SPACE); break;
+        case TD_DOUBLE_HOLD: register_code(KC_LSFT); tap_code(KC_ENTER); unregister_code(KC_LSFT); break;
         default: ;
     }
 }
@@ -479,8 +479,8 @@ void space_reset(qk_tap_dance_state_t *state, void *user_data) {
     switch (spacetap_state.state) {
         case TD_SINGLE_TAP: unregister_code(KC_SPACE); break;
         case TD_SINGLE_HOLD: unregister_code(KC_ENTER); break;
-        case TD_DOUBLE_TAP: unregister_code(KC_SPACE); unregister_code(KC_SPACE); break;
-        case TD_DOUBLE_HOLD: unregister_code(KC_SPACE);
+        case TD_DOUBLE_TAP: unregister_code(KC_SPACE); break;
+        case TD_DOUBLE_HOLD: unregister_code(KC_SPACE); unregister_code(KC_ENTER);
         default: ;
     }
     spacetap_state.state = TD_NONE;
