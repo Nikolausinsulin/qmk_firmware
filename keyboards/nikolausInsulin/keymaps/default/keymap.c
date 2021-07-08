@@ -60,7 +60,8 @@ void x_reset(qk_tap_dance_state_t *state, void *user_data);
 
 enum custom_keycodes {
     BACKTICK = SAFE_RANGE,
-    CIRCUM
+    CIRCUM, 
+    GTAMECH
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -79,6 +80,69 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             // when keycode QMKBEST is pressed
             SEND_STRING(SS_TAP(X_GRAVE) SS_TAP(X_GRAVE) SS_TAP(X_BSPACE));
             //SEND_STRING(SS_TAP(X_EQL));
+        } else {
+            // when keycode QMKBEST is released
+        }
+        break;
+    case GTAMECH:
+        if (record->event.pressed) {
+            // when keycode QMKBEST is pressed
+            //int delay0 = 500;
+            //int delay1 = 400; 
+            //int delay2 = 350; 
+            //int beforeEnterWait = 400;
+            //int phoneOpenWait = 300;
+            //int phoneMenuWait = 300;
+            //int betweenUpWait = 200;
+            // open phone
+            tap_code_delay(KC_UP, 50);
+            SEND_STRING(SS_DELAY(400));
+            // navigate to contacts
+            tap_code_delay(KC_UP, 50);
+            SEND_STRING(SS_DELAY(300));
+            tap_code_delay(KC_RIGHT, 50);
+            SEND_STRING(SS_DELAY(500));
+            tap_code_delay(KC_ENTER, 50);
+            SEND_STRING(SS_DELAY(300));
+            //SEND_STRING(SS_TAP(X_UP) SS_DELAY(phoneOpenWait) SS_TAP(X_UP) SS_DELAY(phoneMenuWait) SS_TAP(X_RIGHT) SS_DELAY(beforeEnterWait) SS_TAP(X_ENTER) SS_DELAY(betweenUpWait) SS_TAP(X_UP) SS_DELAY(betweenUpWait) SS_TAP(X_UP) SS_DELAY(betweenUpWait) SS_TAP(X_UP) SS_DELAY(betweenUpWait) SS_TAP(X_UP));
+            //SEND_STRING(SS_TAP(X_UP) SS_DELAY(400) SS_TAP(X_UP) SS_DELAY(300) SS_TAP(X_RIGHT) SS_DELAY(500) SS_TAP(X_ENTER) SS_DELAY(250) SS_TAP(X_UP) SS_DELAY(250) SS_TAP(X_UP) SS_DELAY(250) SS_TAP(X_UP) SS_DELAY(250) SS_TAP(X_UP));
+            //tap_code_delay(KC_ENTER, delay1);
+            //SEND_STRING("stuff" SS_DELAY(200) "shit");
+
+            // navigate to correct contact
+
+            
+            tap_code_delay(KC_DOWN, 50);
+            SEND_STRING(SS_DELAY(200));
+
+            tap_code_delay(KC_DOWN, 50);
+            SEND_STRING(SS_DELAY(200));
+
+            tap_code_delay(KC_DOWN, 50);
+            SEND_STRING(SS_DELAY(200));
+
+            tap_code_delay(KC_DOWN, 50);
+            SEND_STRING(SS_DELAY(200));
+
+            tap_code_delay(KC_DOWN, 50);
+            SEND_STRING(SS_DELAY(200));
+
+            tap_code_delay(KC_DOWN, 50);
+            SEND_STRING(SS_DELAY(200));
+
+            tap_code_delay(KC_DOWN, 50);
+            SEND_STRING(SS_DELAY(200));
+
+            tap_code_delay(KC_DOWN, 50);
+            SEND_STRING(SS_DELAY(200));
+
+            tap_code_delay(KC_DOWN, 50);
+            SEND_STRING(SS_DELAY(200));
+
+            
+            // dial contact
+            // tap_code_delay(KC_ENTER, delay);
+
         } else {
             // when keycode QMKBEST is released
         }
@@ -131,7 +195,7 @@ void matrix_scan_user(void) {
       // send shift enter
       SEND_STRING(SS_LSFT(SS_TAP(X_ENTER)));
     }
-    // browser commands
+    // BROWSER COMMANDS
     SEQ_ONE_KEY(KC_U) {
       // search via ctrl f
       SEND_STRING(SS_LALT(SS_TAP(X_LEFT)));
@@ -161,7 +225,7 @@ void matrix_scan_user(void) {
       SEND_STRING(SS_LCTL("d"));
     }
     
-
+    // LAYER SWITCHING
     SEQ_FOUR_KEYS(KC_A, KC_N, KC_K, KC_I) {
       // anki layer
       layer_on(4);
@@ -170,6 +234,11 @@ void matrix_scan_user(void) {
       // nav layer
       layer_on(5);
     }
+    SEQ_THREE_KEYS(KC_G, KC_T, KC_A) {
+      // gta layer
+      layer_on(6);
+    }
+
 
   }
 } 
@@ -232,6 +301,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // nav layer 
 [5] = LAYOUT(
     TO(0),              KC_TRNS,            KC_TRNS,    KC_TRNS,        KC_TRNS, KC_TRNS,                                   KC_TRNS,        KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS,            KC_TRNS,            KC_TRNS,    KC_TRNS,        KC_TRNS, KC_TRNS,                                   KC_TRNS,        KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS,            KC_TRNS,            KC_TRNS,    KC_TRNS,        KC_TRNS, KC_TRNS,                                   KC_TRNS,        KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,
+                                                                            KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,   KC_TRNS
+), 
+// gta layer 
+[6] = LAYOUT(
+    TO(0),              KC_TRNS,            KC_TRNS,    KC_TRNS,        KC_TRNS, KC_TRNS,                                   GTAMECH,        KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,
     KC_TRNS,            KC_TRNS,            KC_TRNS,    KC_TRNS,        KC_TRNS, KC_TRNS,                                   KC_TRNS,        KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,
     KC_TRNS,            KC_TRNS,            KC_TRNS,    KC_TRNS,        KC_TRNS, KC_TRNS,                                   KC_TRNS,        KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,
                                                                             KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,   KC_TRNS
