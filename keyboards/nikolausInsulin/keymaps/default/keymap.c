@@ -172,6 +172,7 @@ void matrix_scan_user(void) {
       SEND_STRING(SS_LCTL("f"));
     }
     // umlaute und scharfes S
+    /*
     SEQ_ONE_KEY(KC_U) {
       SEND_STRING(SS_TAP(X_LBRC));
     }
@@ -184,6 +185,7 @@ void matrix_scan_user(void) {
     SEQ_ONE_KEY(KC_S) {
       SEND_STRING(SS_TAP(X_MINS));
     }
+    */
     
     SEQ_TWO_KEYS(KC_S, KC_S) {
       // make windows screenshot
@@ -191,17 +193,18 @@ void matrix_scan_user(void) {
       // TODO: make this work
       SEND_STRING("screenshot pls");
     }
+    /*
     SEQ_TWO_KEYS(KC_SPACE, KC_SPACE) {
       // send shift enter
       SEND_STRING(SS_LSFT(SS_TAP(X_ENTER)));
-    }
+    } */
     // BROWSER COMMANDS
     SEQ_ONE_KEY(KC_U) {
-      // search via ctrl f
+      // go backwards one page
       SEND_STRING(SS_LALT(SS_TAP(X_LEFT)));
     }
     SEQ_ONE_KEY(KC_E) {
-      // search via ctrl f
+      // go forward one page
       SEND_STRING(SS_LALT(SS_TAP(X_RIGHT)));
     }
     SEQ_TWO_KEYS(KC_T, KC_N) {
@@ -265,62 +268,62 @@ combo_t key_combos[COMBO_COUNT] = {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [0] = LAYOUT(
-      KC_ESC,           KC_X,               KC_V,       KC_L,           KC_C,    KC_W,                                      KC_K,           KC_H,   KC_G,       KC_F,       KC_Q,   RESET, 
-      KC_TAB,           KC_U,               KC_I,       KC_A,           KC_E,    KC_O,                                      KC_S,           KC_N,   KC_R,       KC_T,       KC_D,   KC_RSHIFT, 
-      KC_LCTRL,         KC_LWIN,            KC_LALT,    DE_Y,           KC_P,    DE_Z,                                      KC_B,           KC_M,   KC_COMMA,   KC_DOT,     KC_J,   KC_TRNS, 
+      KC_ESC,           KC_X,               KC_V,       KC_L,           KC_C,    KC_W,                                      KC_K,           KC_H,   KC_G,       KC_F,       KC_Q,   DE_SS, 
+      KC_TAB,           KC_U,               KC_I,       KC_A,           KC_E,    KC_O,                                      KC_S,           KC_N,   KC_R,       KC_T,       KC_D,   DE_Y, 
+      KC_LCTRL,         DE_UE,              DE_OE,      DE_AE,          KC_P,    DE_Z,                                      KC_B,           KC_M,   KC_COMMA,   KC_DOT,     KC_J,   KC_RSHIFT, 
                                                                      OSL(2),    TD(tapdanceSpace),   KC_DOWN,          KC_LEAD, KC_BSPACE, OSL(1)
   ), 
 // special signs layer
 [1] = LAYOUT(
-    KC_TRNS,            DE_AT,            DE_UNDS,           DE_LBRC,            DE_RBRC,             CIRCUM,                                   DE_EXLM,        DE_LESS,      DE_MORE,     DE_EQL,   DE_AMPR,            KC_TRNS,
-    KC_TRNS,            DE_BSLS,            DE_SLSH,           DE_LCBR,            DE_RCBR,             DE_ASTR,                                   DE_QST,         DE_LPRN,      DE_RPRN,     DE_MINS,  DE_COLN,            KC_TRNS,
-    KC_TRNS,            DE_HASH,            DE_DLR,            DE_PIPE,            DE_TILD,             BACKTICK,                                   DE_PLUS,        DE_PERC,      DE_DQOT,     DE_QUOT,  DE_SCLN,            KC_TRNS,
-                                                                            KC_TRNS,    KC_TRNS,    KC_TRNS,            KC_TRNS,    KC_TRNS,   KC_TRNS
+    _______,            DE_AT,            DE_UNDS,           DE_LBRC,            DE_RBRC,             CIRCUM,                                   DE_EXLM,        DE_LESS,      DE_MORE,     DE_EQL,   DE_AMPR,            _______,
+    _______,            DE_BSLS,            DE_SLSH,           DE_LCBR,            DE_RCBR,             DE_ASTR,                                   DE_QST,         DE_LPRN,      DE_RPRN,     DE_MINS,  DE_COLN,            _______,
+    _______,            DE_HASH,            DE_DLR,            DE_PIPE,            DE_TILD,             BACKTICK,                                   DE_PLUS,        DE_PERC,      DE_DQOT,     DE_QUOT,  DE_SCLN,            _______,
+                                                                            _______,    _______,    _______,            _______,    _______,   _______
 ), 
 // numpad and arrows layer
 [2] = LAYOUT(
-    KC_TRNS,            KC_TRNS,            KC_TRNS,    KC_TRNS,        KC_TRNS, KC_TRNS,                                   KC_TRNS,        KC_7,     KC_8,   KC_9,  KC_TRNS, KC_TRNS,
-    KC_TRNS,            KC_LEFT,            KC_DOWN,    KC_UP,          KC_RIGHT, KC_TRNS,                                   KC_TRNS,        KC_4,     KC_5,   KC_6,  KC_TRNS, KC_TRNS,
-    KC_TRNS,            KC_TRNS,            KC_TRNS,    KC_TRNS,        KC_TRNS, KC_TRNS,                                   KC_TRNS,        KC_1,     KC_2,   KC_3,  KC_TRNS, KC_TRNS,
-                                                                KC_TRNS,    KC_TRNS,    KC_TRNS,         KC_TRNS,    KC_0,   KC_DOT
+    _______,            _______,            _______,    _______,        _______, _______,                                   _______,        KC_7,     KC_8,   KC_9,  _______, _______,
+    _______,            KC_LEFT,            KC_DOWN,    KC_UP,          KC_RIGHT, _______,                                   _______,        KC_4,     KC_5,   KC_6,  _______, _______,
+    _______,            KC_LWIN,            KC_LALT,    _______,        _______, _______,                                   _______,        KC_1,     KC_2,   KC_3,  _______, _______,
+                                                                _______,    _______,    _______,         _______,    KC_0,   KC_DOT
 ), 
 // umlaut layer currently not in use
 [3] = LAYOUT(
-    KC_TRNS,            KC_TRNS,            KC_TRNS,    KC_TRNS,        KC_TRNS, KC_TRNS,                                   KC_TRNS,        KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS,            DE_UE,            KC_TRNS,    DE_AE,        KC_TRNS, DE_OE,                                   DE_SS,        KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS,            KC_TRNS,            KC_TRNS,    KC_TRNS,        KC_TRNS, KC_TRNS,                                   KC_TRNS,        KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,
-                                                                            KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,   KC_TRNS
+    _______,            _______,            _______,    _______,        _______, _______,                                   _______,        _______, _______,   _______, _______, _______,
+    _______,            DE_UE,            _______,    DE_AE,        _______, DE_OE,                                   DE_SS,        _______, _______,   _______, _______, _______,
+    _______,            _______,            _______,    _______,        _______, _______,                                   _______,        _______, _______,   _______, _______, _______,
+                                                                            _______,    _______,    _______,    _______,    _______,   _______
 ), 
 // anki layer
 [4] = LAYOUT(
-    TO(0),              KC_TRNS,            KC_TRNS,    KC_TRNS,        KC_TRNS, KC_TRNS,                                   KC_TRNS,        KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS,            KC_1,               KC_2,       KC_3,           KC_4,    KC_5,                                      KC_TRNS,        KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS,            KC_TRNS,            KC_TRNS,    KC_TRNS,        KC_TRNS, KC_TRNS,                                   KC_TRNS,        KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,
-                                                                            KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,   KC_TRNS
+    TO(0),              _______,            _______,    _______,        _______, _______,                                   _______,        _______, _______,   _______, _______, _______,
+    _______,            KC_1,               KC_2,       KC_3,           KC_4,    KC_5,                                      _______,        _______, _______,   _______, _______, _______,
+    _______,            _______,            _______,    _______,        _______, _______,                                   _______,        _______, _______,   _______, _______, _______,
+                                                                            _______,    _______,    _______,    _______,    _______,   _______
 ), 
 // nav layer 
 [5] = LAYOUT(
-    TO(0),              KC_TRNS,            KC_TRNS,    KC_TRNS,        KC_TRNS, KC_TRNS,                                   KC_TRNS,        KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS,            KC_TRNS,            KC_TRNS,    KC_TRNS,        KC_TRNS, KC_TRNS,                                   KC_TRNS,        KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS,            KC_TRNS,            KC_TRNS,    KC_TRNS,        KC_TRNS, KC_TRNS,                                   KC_TRNS,        KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,
-                                                                            KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,   KC_TRNS
+    TO(0),              _______,            _______,    _______,        _______, _______,                                   _______,        _______, _______,   _______, _______, _______,
+    _______,            _______,            _______,    _______,        _______, _______,                                   _______,        _______, _______,   _______, _______, _______,
+    _______,            _______,            _______,    _______,        _______, _______,                                   _______,        _______, _______,   _______, _______, _______,
+                                                                            _______,    _______,    _______,    _______,    _______,   _______
 ), 
 // gta layer 
 [6] = LAYOUT(
-    TO(0),              KC_TRNS,            KC_TRNS,    KC_TRNS,        KC_TRNS, KC_TRNS,                                   GTAMECH,        KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS,            KC_TRNS,            KC_TRNS,    KC_TRNS,        KC_TRNS, KC_TRNS,                                   KC_TRNS,        KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS,            KC_TRNS,            KC_TRNS,    KC_TRNS,        KC_TRNS, KC_TRNS,                                   KC_TRNS,        KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,
-                                                                            KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,   KC_TRNS
+    TO(0),              _______,            _______,    _______,        _______, _______,                                   GTAMECH,        _______, _______,   _______, _______, _______,
+    _______,            _______,            _______,    _______,        _______, _______,                                   _______,        _______, _______,   _______, _______, _______,
+    _______,            _______,            _______,    _______,        _______, _______,                                   _______,        _______, _______,   _______, _______, _______,
+                                                                            _______,    _______,    _______,    _______,    _______,   _______
 )
   };
 
 
 /* 
 [1] = LAYOUT(
-    KC_TRNS,            KC_TRNS,            KC_TRNS,    KC_TRNS,        KC_TRNS, KC_TRNS,                                   KC_TRNS,        KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS,            KC_TRNS,            KC_TRNS,    KC_TRNS,        KC_TRNS, KC_TRNS,                                   KC_TRNS,        KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS,            KC_TRNS,            KC_TRNS,    KC_TRNS,        KC_TRNS, KC_TRNS,                                   KC_TRNS,        KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,
-                                                                            KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,   KC_TRNS
+    _______,            _______,            _______,    _______,        _______, _______,                                   _______,        _______, _______,   _______, _______, _______,
+    _______,            _______,            _______,    _______,        _______, _______,                                   _______,        _______, _______,   _______, _______, _______,
+    _______,            _______,            _______,    _______,        _______, _______,                                   _______,        _______, _______,   _______, _______, _______,
+                                                                            _______,    _______,    _______,    _______,    _______,   _______
 )
 */
 
