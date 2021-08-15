@@ -241,7 +241,11 @@ void matrix_scan_user(void) {
       // gta layer
       layer_on(6);
     }
-
+    // windows projection mode switching 
+    SEQ_ONE_KEY(KC_P) {
+        // windows project
+        SEND_STRING(SS_LWIN(SS_TAP(X_P)));
+    }
 
   }
 } 
