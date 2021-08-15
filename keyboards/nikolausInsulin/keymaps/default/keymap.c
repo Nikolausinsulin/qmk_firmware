@@ -171,21 +171,6 @@ void matrix_scan_user(void) {
       // search via ctrl f
       SEND_STRING(SS_LCTL("f"));
     }
-    // umlaute und scharfes S
-    /*
-    SEQ_ONE_KEY(KC_U) {
-      SEND_STRING(SS_TAP(X_LBRC));
-    }
-    SEQ_ONE_KEY(KC_A) {
-      SEND_STRING(SS_TAP(X_QUOT));
-    }
-    SEQ_ONE_KEY(KC_O) {
-      SEND_STRING(SS_TAP(X_SCLN));
-    }
-    SEQ_ONE_KEY(KC_S) {
-      SEND_STRING(SS_TAP(X_MINS));
-    }
-    */
     
     SEQ_TWO_KEYS(KC_S, KC_S) {
       // make windows screenshot
@@ -198,6 +183,13 @@ void matrix_scan_user(void) {
       // send shift enter
       SEND_STRING(SS_LSFT(SS_TAP(X_ENTER)));
     } */
+    SEQ_FOUR_KEYS(KC_C, KC_A, KC_P, KC_S) {
+      // toggle capslock
+      SEND_STRING(SS_TAP(X_CAPS));
+    }
+
+
+
     // BROWSER COMMANDS
     SEQ_ONE_KEY(KC_U) {
       // go backwards one page
@@ -241,7 +233,7 @@ void matrix_scan_user(void) {
       // gta layer
       layer_on(6);
     }
-    // windows projection mode switching 
+    // windows projection mode switching (multiple screens)
     SEQ_ONE_KEY(KC_P) {
         // windows project
         SEND_STRING(SS_LWIN(SS_TAP(X_P)));
