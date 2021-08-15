@@ -174,9 +174,7 @@ void matrix_scan_user(void) {
     
     SEQ_TWO_KEYS(KC_S, KC_S) {
       // make windows screenshot
-      //SEND_STRING(SS_LWIN(X_PSCREEN)); 
-      // TODO: make this work
-      SEND_STRING("screenshot pls");
+      SEND_STRING(SS_LWIN(SS_TAP(X_PSCREEN))); 
     }
     /*
     SEQ_TWO_KEYS(KC_SPACE, KC_SPACE) {
@@ -187,8 +185,42 @@ void matrix_scan_user(void) {
       // toggle capslock
       SEND_STRING(SS_TAP(X_CAPS));
     }
-
-
+    SEQ_FOUR_KEYS(KC_L, KC_O, KC_C, KC_K) {
+      // toggle capslock
+      SEND_STRING(SS_LWIN(SS_TAP(X_L)));
+    }
+    SEQ_FOUR_KEYS(KC_M, KC_U, KC_T, KC_E) {
+      // toggle capslock
+      SEND_STRING(SS_TAP(X_MUTE));
+    }    
+    // windows window rearrangement
+    // note how i is left arrow, a is down arrow, e is right arrow, l is up arrow
+    // First group sends windowskey + direction
+    SEQ_TWO_KEYS(KC_W, KC_I) {
+      SEND_STRING(SS_LWIN(SS_TAP(X_LEFT)));
+    }
+    SEQ_TWO_KEYS(KC_W, KC_E) {
+      SEND_STRING(SS_LWIN(SS_TAP(X_RIGHT)));
+    }
+    SEQ_TWO_KEYS(KC_W, KC_L) {
+      SEND_STRING(SS_LWIN(SS_TAP(X_UP)));
+    }
+    SEQ_TWO_KEYS(KC_W, KC_A) {
+      SEND_STRING(SS_LWIN(SS_TAP(X_DOWN)));
+    }
+    // Second group sends windowskey + shift + direction
+    SEQ_THREE_KEYS(KC_W, KC_S, KC_I) {
+      SEND_STRING(SS_LWIN(SS_LSFT(SS_TAP(X_LEFT))));
+    }
+    SEQ_THREE_KEYS(KC_W, KC_S, KC_E) {
+      SEND_STRING(SS_LWIN(SS_LSFT(SS_TAP(X_RIGHT))));
+    }
+    SEQ_THREE_KEYS(KC_W, KC_S, KC_L) {
+      SEND_STRING(SS_LWIN(SS_LSFT(SS_TAP(X_UP))));
+    }
+    SEQ_THREE_KEYS(KC_W, KC_S, KC_A) {
+      SEND_STRING(SS_LWIN(SS_LSFT(SS_TAP(X_DOWN))));
+    }
 
     // BROWSER COMMANDS
     SEQ_ONE_KEY(KC_U) {
