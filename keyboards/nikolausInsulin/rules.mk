@@ -23,8 +23,7 @@ AUDIO_ENABLE = no           # Audio output
 
 
 
-COMBO_ENABLE = yes
+
 TAP_DANCE_ENABLE = yes
 SPLIT_KEYBOARD = yes
-AUTO_SHIFT_ENABLE = yes 
 LEADER_ENABLE = yes 
