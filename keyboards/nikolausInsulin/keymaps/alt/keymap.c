@@ -182,8 +182,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [0] = LAYOUT(
       KC_ESC,           KC_X,               KC_V,       KC_L,           KC_C,    KC_W,                                      KC_K,           KC_H,   KC_G,       KC_F,       KC_Q,   DE_SS, 
       KC_TAB,           KC_U,               KC_I,       KC_A,           KC_E,    KC_O,                                      KC_S,           KC_N,   KC_R,       KC_T,       KC_D,   DE_Y, 
-      KC_LCTRL,         DE_UE,              DE_OE,      DE_AE,          KC_P,    DE_Z,                                      KC_B,           KC_M,   KC_COMMA,   KC_DOT,     KC_J,   _______, 
-                                                                     KC_BSPACE,    TD(tapdanceSpace),   KC_DOWN,          OSL(2), OSM(MOD_LSFT), OSL(1)
+      KC_LCTRL,         DE_UE,              DE_OE,      DE_AE,          KC_P,    DE_Z,                                      KC_B,           KC_M,   KC_COMMA,   KC_DOT,     KC_J,   KC_LEAD, 
+                                                                KC_BSPACE,    TD(tapdanceSpace),   KC_DOWN,          MO(2), OSM(MOD_LSFT), OSL(1)
   ), 
 // special signs layer
 [1] = LAYOUT(
@@ -195,8 +195,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // numpad and arrows layer
 [2] = LAYOUT(
     _______,            _______,             KC_7,             KC_8,    KC_9,  _______,                                    _______,          C(KC_LEFT), KC_UP,         C(KC_RIGHT),   KC_PGUP,    _______,
-    _______,            _______,             KC_4,             KC_5,    KC_6,  _______,                                    KC_HOME,          KC_LEFT,    KC_DOWN,       KC_RIGHT,      KC_PGDOWN,   KC_END,
-    _______,            _______,             KC_1,             KC_2,    KC_3,  _______,                                    _______,          _______,    _______,       _______,       _______,    _______,
+    KC_LSFT,            KC_DOT,              KC_4,             KC_5,    KC_6,  _______,                                    KC_HOME,          KC_LEFT,    KC_DOWN,       KC_RIGHT,      KC_PGDOWN,   KC_END,
+    _______,            KC_COMMA,            KC_1,             KC_2,    KC_3,  _______,                                    _______,          _______,    _______,       _______,       _______,    _______,
                                                                 _______,       KC_0,    _______,         _______,    _______,   _______
 ), 
 // umlaut layer currently not in use
