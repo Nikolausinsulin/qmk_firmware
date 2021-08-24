@@ -95,28 +95,75 @@ void matrix_scan_user(void) {
     leading = false;
     leader_end();
 
+    /*
     SEQ_ONE_KEY(KC_F) {
       // search via ctrl f
       SEND_STRING(SS_LCTL("f"));
     }
-    
+    */
     SEQ_TWO_KEYS(KC_S, KC_S) {
       // make windows screenshot
-      //SEND_STRING(SS_LWIN(X_PSCREEN)); 
-      // TODO: make this work
-      SEND_STRING("screenshot pls");
+      SEND_STRING(SS_LWIN(SS_TAP(X_PSCREEN))); 
     }
-    SEQ_TWO_KEYS(KC_SPACE, KC_SPACE) {
-      // send shift enter
-      SEND_STRING(SS_LSFT(SS_TAP(X_ENTER)));
+    SEQ_FOUR_KEYS(KC_C, KC_A, KC_P, KC_S) {
+      // toggle capslock
+      SEND_STRING(SS_TAP(X_CAPS));
     }
+    SEQ_FOUR_KEYS(KC_L, KC_O, KC_C, KC_K) {
+      // lock windows
+      SEND_STRING(SS_LWIN(SS_TAP(X_L)));
+    }
+    SEQ_FOUR_KEYS(KC_M, KC_U, KC_T, KC_E) {
+      // toggle mute
+      SEND_STRING(SS_TAP(X_MUTE));
+    }    
+    SEQ_FOUR_KEYS(KC_S, KC_N, KC_I, KC_P) {
+        // windows snipping tool
+        SEND_STRING(SS_LWIN(SS_LSFT(SS_TAP(X_S))));
+    }
+    // windows window rearrangement
+    // note how i is left arrow, a is down arrow, e is right arrow, l is up arrow
+    // note how n is left arrow, r is down arrow, t is right arrow, g is up arrow
+    // First group sends windowskey + direction
+    SEQ_TWO_KEYS(KC_W, KC_N) {
+      SEND_STRING(SS_LWIN(SS_TAP(X_LEFT)));
+    }
+    SEQ_TWO_KEYS(KC_W, KC_T) {
+      SEND_STRING(SS_LWIN(SS_TAP(X_RIGHT)));
+    }
+    SEQ_TWO_KEYS(KC_W, KC_G) {
+      SEND_STRING(SS_LWIN(SS_TAP(X_UP)));
+    }
+    SEQ_TWO_KEYS(KC_W, KC_R) {
+      SEND_STRING(SS_LWIN(SS_TAP(X_DOWN)));
+    }
+    // Second group sends windowskey + shift + direction
+    SEQ_THREE_KEYS(KC_W, KC_S, KC_N) {
+      SEND_STRING(SS_LWIN(SS_LSFT(SS_TAP(X_LEFT))));
+    }
+    SEQ_THREE_KEYS(KC_W, KC_S, KC_T) {
+      SEND_STRING(SS_LWIN(SS_LSFT(SS_TAP(X_RIGHT))));
+    }
+    SEQ_THREE_KEYS(KC_W, KC_S, KC_G) {
+      SEND_STRING(SS_LWIN(SS_LSFT(SS_TAP(X_UP))));
+    }
+    SEQ_THREE_KEYS(KC_W, KC_S, KC_R) {
+      SEND_STRING(SS_LWIN(SS_LSFT(SS_TAP(X_DOWN))));
+    }
+
+    // windows projection mode switching (multiple screens)
+    SEQ_ONE_KEY(KC_P) {
+        // windows project
+        SEND_STRING(SS_LWIN(SS_TAP(X_P)));
+    }
+
     // BROWSER COMMANDS
     SEQ_ONE_KEY(KC_U) {
-      // search via ctrl f
+      // go backwards one page
       SEND_STRING(SS_LALT(SS_TAP(X_LEFT)));
     }
     SEQ_ONE_KEY(KC_E) {
-      // search via ctrl f
+      // go forward one page
       SEND_STRING(SS_LALT(SS_TAP(X_RIGHT)));
     }
     SEQ_TWO_KEYS(KC_T, KC_N) {
@@ -149,11 +196,11 @@ void matrix_scan_user(void) {
       // nav layer
       layer_on(5);
     }
-    SEQ_THREE_KEYS(KC_G, KC_T, KC_A) { //todo: change sequence
-      // undefined layer
+    SEQ_THREE_KEYS(KC_G, KC_T, KC_A) {
+      // gta layer
       layer_on(6);
     }
-
+    
 
   }
 } 
