@@ -121,6 +121,10 @@ void matrix_scan_user(void) {
         // windows snipping tool
         SEND_STRING(SS_LWIN(SS_LSFT(SS_TAP(X_S))));
     }
+    SEQ_FOUR_KEYS(KC_D, KC_I, KC_C, KC_T) {
+        // open windows dictation mode
+        SEND_STRING(SS_LWIN(SS_TAP(X_H)));
+    }
     // windows window rearrangement
     // note how i is left arrow, a is down arrow, e is right arrow, l is up arrow
     // note how n is left arrow, r is down arrow, t is right arrow, g is up arrow
