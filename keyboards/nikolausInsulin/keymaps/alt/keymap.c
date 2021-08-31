@@ -39,7 +39,8 @@ typedef struct {
 enum {
     tapdanceSpace, 
     tapdanceEndHome,
-    tapdanceTabAltTab
+    //tapdanceTabAltTab, 
+    tapdanceEscAltF4
 };
 
 td_state_t cur_dance(qk_tap_dance_state_t *state);
@@ -256,11 +257,11 @@ combo_t key_combos[COMBO_COUNT] = {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [0] = LAYOUT(
-      KC_ESC,           KC_X,               KC_V,       KC_L,           KC_C,    KC_W,                                      KC_K,           KC_H,   KC_G,       KC_F,       KC_Q,   DE_SS, 
-      TD(tapdanceTabAltTab), KC_U,          KC_I,       KC_A,           KC_E,    KC_O,                                      KC_S,           KC_N,   KC_R,       KC_T,       KC_D,   DE_Y, 
+      TD(tapdanceEscAltF4), KC_X,           KC_V,       KC_L,           KC_C,    KC_W,                                      KC_K,           KC_H,   KC_G,       KC_F,       KC_Q,   DE_SS, 
+      KC_TAB,           KC_U,               KC_I,       KC_A,           KC_E,    KC_O,                                      KC_S,           KC_N,   KC_R,       KC_T,       KC_D,   DE_Y, 
       KC_LCTRL,         DE_UE,              DE_OE,      DE_AE,          KC_P,    DE_Z,                                      KC_B,           KC_M,   KC_COMMA,   KC_DOT,     KC_J,   KC_LEAD, 
                                                                 KC_BSPACE,    TD(tapdanceSpace),   KC_DOWN,          MO(2), OSM(MOD_LSFT), OSL(1)
-  ), 
+  ),  
 // special signs layer
 [1] = LAYOUT(
     _______,            DE_AT,              DE_UNDS,           DE_LBRC,            DE_RBRC,             CIRCUM,                                     DE_EXLM,        DE_LESS,      DE_MORE,     DE_EQL,   DE_AMPR,            _______,
@@ -381,8 +382,15 @@ static td_tap_t endhometap_state = {
     .is_press_action = true,
     .state = TD_NONE
 };
- 
+  
+/*
 static td_tap_t tabalttabtap_state = {
+    .is_press_action = true,
+    .state = TD_NONE
+}; 
+*/
+
+static td_tap_t escaltf4tap_state = {
     .is_press_action = true,
     .state = TD_NONE
 };
@@ -432,7 +440,7 @@ void endhome_reset(qk_tap_dance_state_t *state, void *user_data) {
     }
     endhometap_state.state = TD_NONE;
 }
-
+ /*
 void tabalttab_finished(qk_tap_dance_state_t *state, void *user_data) {
     tabalttabtap_state.state = cur_dance(state);
     switch (tabalttabtap_state.state) {
@@ -455,11 +463,35 @@ void tabalttab_reset(qk_tap_dance_state_t *state, void *user_data) {
     tabalttabtap_state.state = TD_NONE;
 }
 
+*/
 
+
+void escaltf4_finished(qk_tap_dance_state_t *state, void *user_data) {
+    escaltf4tap_state.state = cur_dance(state);
+    switch (escaltf4tap_state.state) {
+        case TD_SINGLE_TAP: tap_code(KC_ESC); break;
+        case TD_SINGLE_HOLD: register_code(KC_LALT); tap_code(KC_F4); unregister_code(KC_LALT); break;
+        case TD_DOUBLE_TAP: tap_code(KC_ESC); tap_code(KC_ESC); break;
+        case TD_DOUBLE_HOLD: register_code(KC_LALT); tap_code(KC_F4); unregister_code(KC_LALT); break;
+        default: ;
+    }
+}
+
+void escaltf4_reset(qk_tap_dance_state_t *state, void *user_data) {
+    switch (escaltf4tap_state.state) {
+        case TD_SINGLE_TAP: unregister_code(KC_ESC); break;
+        case TD_SINGLE_HOLD: unregister_code(KC_F4); break;
+        case TD_DOUBLE_TAP: unregister_code(KC_ESC); break;
+        case TD_DOUBLE_HOLD: unregister_code(KC_F4); 
+        default: ;
+    }
+    escaltf4tap_state.state = TD_NONE;
+}
 
 qk_tap_dance_action_t tap_dance_actions[] = {
     [tapdanceSpace] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, space_finished, space_reset),
     [tapdanceEndHome] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, endhome_finished, endhome_reset), 
-    [tapdanceTabAltTab] ACTION_TAP_DANCE_FN_ADVANCED(NULL, tabalttab_finished, tabalttab_reset) //maybe here should be a , at the end
+    //[tapdanceTabAltTab] ACTION_TAP_DANCE_FN_ADVANCED(NULL, tabalttab_finished, tabalttab_reset) //maybe here should be a , at the end
+    [tapdanceEscAltF4] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, escaltf4_finished, escaltf4_reset)
 };
 
