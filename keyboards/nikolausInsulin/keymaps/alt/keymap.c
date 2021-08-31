@@ -241,17 +241,19 @@ void matrix_scan_user(void) {
 enum combos {
   winCombo,
   altCombo, 
-  // 
+  superAltTabCombo, 
 };
 
 const uint16_t PROGMEM ueuo_combo[] = {DE_UE, DE_OE, COMBO_END};
 const uint16_t PROGMEM oeae_combo[] = {DE_OE, DE_AE, COMBO_END};
+const uint16_t PROGMEM superalttab_combo[] = {KC_TAB, KC_U, COMBO_END};
 //const uint16_t PROGMEM layer_combo[] = {KC_C, KC_W, COMBO_END};
 
 
 combo_t key_combos[COMBO_COUNT] = {
   [winCombo] = COMBO(ueuo_combo, KC_LWIN),
-  [altCombo] = COMBO(oeae_combo, KC_LALT)
+  [altCombo] = COMBO(oeae_combo, KC_LALT), 
+  [superAltTabCombo] = COMBO(superAltTabCombo, ALT_TAB), 
 };
 
 
