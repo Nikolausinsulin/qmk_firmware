@@ -254,8 +254,8 @@ enum combos {
   shiftCombo, 
 };
 
-const uint16_t PROGMEM ueuo_combo[] = {DE_UE, DE_OE, COMBO_END};
-const uint16_t PROGMEM oeae_combo[] = {DE_OE, DE_AE, COMBO_END};
+const uint16_t PROGMEM ueuo_combo[] = {DE_UDIA, DE_ODIA, COMBO_END};
+const uint16_t PROGMEM oeae_combo[] = {DE_ODIA, DE_ADIA, COMBO_END};
 const uint16_t PROGMEM superalttab_combo[] = {KC_C, KC_W, COMBO_END};
 const uint16_t PROGMEM shift_combo[] = {KC_TAB, KC_U, COMBO_END};
 //const uint16_t PROGMEM layer_combo[] = {KC_C, KC_W, COMBO_END};
@@ -273,14 +273,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [0] = LAYOUT(
       TD(tapdanceEscAltF4), KC_X,           KC_V,       KC_L,           KC_C,    KC_W,                                      KC_K,           KC_H,   KC_G,       KC_F,       KC_Q,   DE_SS, 
       KC_TAB,           KC_U,               KC_I,       KC_A,           KC_E,    KC_O,                                      KC_S,           KC_N,   KC_R,       KC_T,       KC_D,   DE_Y, 
-      KC_LCTRL,         DE_UE,              DE_OE,      DE_AE,          KC_P,    DE_Z,                                      KC_B,           KC_M,   KC_COMMA,   KC_DOT,     KC_J,   KC_LEAD, 
+      KC_LCTRL,         DE_UDIA,              DE_ODIA,      DE_ADIA,          KC_P,    DE_Z,                                      KC_B,           KC_M,   KC_COMMA,   KC_DOT,     KC_J,   KC_LEAD, 
                                                                 KC_BSPACE,    TD(tapdanceSpace),   KC_DOWN,          MO(2), OSM(MOD_LSFT), OSL(1)
   ),  
 // special signs layer
 [1] = LAYOUT(
-    _______,            DE_AT,              DE_UNDS,           DE_LBRC,            DE_RBRC,             CIRCUM,                                     DE_EXLM,        DE_LESS,      DE_MORE,     DE_EQL,   DE_AMPR,            _______,
-    _______,            DE_BSLS,            DE_SLSH,           DE_LCBR,            DE_RCBR,             DE_ASTR,                                    DE_QST,         DE_LPRN,      DE_RPRN,     DE_MINS,  DE_COLN,            _______,
-    _______,            DE_HASH,            DE_DLR,            DE_PIPE,            DE_TILD,             BACKTICK,                                   DE_PLUS,        DE_PERC,      DE_DQOT,     DE_QUOT,  DE_SCLN,            _______,
+    _______,            DE_AT,              DE_UNDS,           DE_LBRC,            DE_RBRC,             CIRCUM,                                     DE_EXLM,        DE_LABK,      DE_RABK,     DE_EQL,   DE_AMPR,            _______,
+    _______,            DE_BSLS,            DE_SLSH,           DE_LCBR,            DE_RCBR,             DE_ASTR,                                    DE_QUES,         DE_LPRN,      DE_RPRN,     DE_MINS,  DE_COLN,            _______,
+    _______,            DE_HASH,            DE_DLR,            DE_PIPE,            DE_TILD,             BACKTICK,                                   DE_PLUS,        DE_PERC,      DE_DQUO,     DE_QUOT,  DE_SCLN,            _______,
                                                                             _______,    _______,    _______,            _______,    _______,   _______
 ), 
 // numpad and arrows layer
@@ -293,7 +293,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // umlaut layer currently not in use
 [3] = LAYOUT(
     _______,            _______,            _______,    _______,        _______, _______,                                   _______,        _______, _______,   _______, _______, _______,
-    _______,            DE_UE,              _______,    DE_AE,          _______, DE_OE,                                     DE_SS,          _______, _______,   _______, _______, _______,
+    _______,            DE_UDIA,              _______,    DE_ADIA,          _______, DE_ODIA,                                     DE_SS,          _______, _______,   _______, _______, _______,
     _______,            _______,            _______,    _______,        _______, _______,                                   _______,        _______, _______,   _______, _______, _______,
                                                                             _______,    _______,    _______,    _______,    _______,   _______
 ), 
