@@ -40,7 +40,7 @@ enum {
     tapdanceSpace, 
     tapdanceEndHome,
     //tapdanceTabAltTab, 
-    tapdanceEscAltF4
+    tapdanceEscAltF4,
 };
 
 td_state_t cur_dance(qk_tap_dance_state_t *state);
@@ -56,9 +56,9 @@ uint16_t alt_tab_timer = 0;
 
 
 enum custom_keycodes {
-    BACKTICK = SAFE_RANGE,
+    ALT_TAB = SAFE_RANGE,
     CIRCUM,
-    ALT_TAB
+    BACKTICK,
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -123,6 +123,11 @@ void matrix_scan_user(void) {
       // make windows screenshot
       SEND_STRING(SS_LWIN(SS_TAP(X_PSCREEN))); 
     }
+    SEQ_FOUR_KEYS(KC_S, KC_N, KC_I, KC_P) {
+        // windows snipping tool
+        SEND_STRING(SS_LWIN(SS_LSFT(SS_TAP(X_S))));
+    }
+
     SEQ_FOUR_KEYS(KC_C, KC_A, KC_P, KC_S) {
       // toggle capslock
       SEND_STRING(SS_TAP(X_CAPS));
@@ -135,14 +140,22 @@ void matrix_scan_user(void) {
       // toggle mute
       SEND_STRING(SS_TAP(X_MUTE));
     }    
-    SEQ_FOUR_KEYS(KC_S, KC_N, KC_I, KC_P) {
-        // windows snipping tool
-        SEND_STRING(SS_LWIN(SS_LSFT(SS_TAP(X_S))));
-    }
     SEQ_FOUR_KEYS(KC_D, KC_I, KC_C, KC_T) {
         // open windows dictation mode
         SEND_STRING(SS_LWIN(SS_TAP(X_H)));
     }
+
+    // windows projection mode switching (multiple screens)
+    SEQ_ONE_KEY(KC_P) {
+        // windows project
+        SEND_STRING(SS_LWIN(SS_TAP(X_P)));
+    }
+
+    // Neo
+    SEQ_THREE_KEYS(KC_N, KC_E, KC_O) {
+      SEND_STRING(SS_LSFT(SS_TAP(X_PAUSE)) SS_DELAY(5) SS_TAP(X_LSFT));
+    }
+
     // windows window rearrangement
     // note how i is left arrow, a is down arrow, e is right arrow, l is up arrow
     // note how n is left arrow, r is down arrow, t is right arrow, g is up arrow
@@ -173,11 +186,7 @@ void matrix_scan_user(void) {
       SEND_STRING(SS_LWIN(SS_LSFT(SS_TAP(X_DOWN))));
     }
 
-    // windows projection mode switching (multiple screens)
-    SEQ_ONE_KEY(KC_P) {
-        // windows project
-        SEND_STRING(SS_LWIN(SS_TAP(X_P)));
-    }
+
 
     // BROWSER COMMANDS
     SEQ_ONE_KEY(KC_U) {
@@ -234,7 +243,7 @@ void matrix_scan_user(void) {
     }
   }
 } 
-
+        
 
 // when adding combos change combocount in config.h
 
@@ -242,18 +251,21 @@ enum combos {
   winCombo,
   altCombo, 
   superAltTabCombo, 
+  shiftCombo, 
 };
 
 const uint16_t PROGMEM ueuo_combo[] = {DE_UE, DE_OE, COMBO_END};
 const uint16_t PROGMEM oeae_combo[] = {DE_OE, DE_AE, COMBO_END};
-const uint16_t PROGMEM superalttab_combo[] = {KC_TAB, KC_U, COMBO_END};
+const uint16_t PROGMEM superalttab_combo[] = {KC_C, KC_W, COMBO_END};
+const uint16_t PROGMEM shift_combo[] = {KC_TAB, KC_U, COMBO_END};
 //const uint16_t PROGMEM layer_combo[] = {KC_C, KC_W, COMBO_END};
 
 
 combo_t key_combos[COMBO_COUNT] = {
   [winCombo] = COMBO(ueuo_combo, KC_LWIN),
   [altCombo] = COMBO(oeae_combo, KC_LALT), 
-  [superAltTabCombo] = COMBO(superAltTabCombo, ALT_TAB), 
+  [superAltTabCombo] = COMBO(superalttab_combo, ALT_TAB), 
+  [shiftCombo] = COMBO(shift_combo, KC_LSHIFT)
 };
 
 
