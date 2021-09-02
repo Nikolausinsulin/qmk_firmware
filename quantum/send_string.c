@@ -20,14 +20,6 @@
 
 #include "send_string.h"
 
-#if defined(AUDIO_ENABLE) && defined(SENDSTRING_BELL)
-#    include "audio.h"
-#    ifndef BELL_SOUND
-#        define BELL_SOUND TERMINAL_SOUND
-#    endif
-float bell_song[][2] = SONG(BELL_SOUND);
-#endif
-
 // clang-format off
 
 /* Bit-Packed look-up table to convert an ASCII character to whether

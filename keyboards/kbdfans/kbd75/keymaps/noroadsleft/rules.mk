@@ -1,4 +1,4 @@
-BOOTMAGIC_ENABLE = lite     # Enable Bootmagic Lite
+BOOTMAGIC_ENABLE = lite
 CONSOLE_ENABLE = yes
 TAP_DANCE_ENABLE = yes
 

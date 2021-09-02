@@ -7,7 +7,7 @@ BOOTLOADER = stm32-dfu
 # Build Options
 #   change yes to no to disable
 #
-BOOTMAGIC_ENABLE = lite     # Enable Bootmagic Lite
+BOOTMAGIC_ENABLE = full     # Virtual DIP switch configuration
 MOUSEKEY_ENABLE = yes       # Mouse keys
 EXTRAKEY_ENABLE = yes       # Audio control and System control
 KEYBOARD_SHARED_EP = yes
@@ -25,6 +25,5 @@ AUDIO_ENABLE = no           # Audio output
 
 LAYOUTS = ortho_5x12
 
-OLED_ENABLE = yes
-OLED_DRIVER = SSD1306
+OLED_DRIVER_ENABLE = yes
 RAW_ENABLE = yes

@@ -8,7 +8,7 @@ BOOTLOADER = stm32-dfu
 # Build Options
 #   change yes to no to disable
 #
-BOOTMAGIC_ENABLE = no       # Enable Bootmagic Lite
+BOOTMAGIC_ENABLE = no   # Virtual DIP switch configuration
 MOUSEKEY_ENABLE = no    # Mouse keys
 EXTRAKEY_ENABLE = yes   # Audio control and System control
 CONSOLE_ENABLE = yes    # Console for debug
@@ -20,8 +20,7 @@ AUDIO_ENABLE = yes
 USE_I2C = no
 RGBLIGHT_ENABLE = yes
 ENCODER_ENABLE = yes
-OLED_ENABLE = yes
-OLED_DRIVER = SSD1306
+OLED_DRIVER_ENABLE = yes
 UNICODE_ENABLE = yes
 
 SRC += ds1307.c taphold.c

@@ -19,7 +19,6 @@
   * [Overview](newbs_building_firmware_configurator.md)
   * [Step by Step](configurator_step_by_step.md)
   * [Troubleshooting](configurator_troubleshooting.md)
-  * [Architecture](configurator_architecture.md)
   * QMK API
     * [Overview](api_overview.md)
     * [API Documentation](api_docs.md)
@@ -36,7 +35,6 @@
   * Guides
     * [Customizing Functionality](custom_quantum_functions.md)
     * [Driver Installation with Zadig](driver_installation_zadig.md)
-    * [Easy Maker for One Offs](easy_maker.md)
     * [Keymap Overview](keymap.md)
     * Development Environments
       * [Docker Guide](getting_started_docker.md)
@@ -62,7 +60,6 @@
     * [Language-Specific Keycodes](reference_keymap_extras.md)
     * [Modifier Keys](feature_advanced_keycodes.md)
     * [Quantum Keycodes](quantum_keycodes.md)
-    * [Magic Keycodes](keycodes_magic.md)
 
   * Advanced Keycodes
     * [Command](feature_command.md)
@@ -80,7 +77,6 @@
     * [Combos](feature_combo.md)
     * [Debounce API](feature_debounce_type.md)
     * [Key Lock](feature_key_lock.md)
-    * [Key Overrides](feature_key_overrides.md)
     * [Layers](feature_layers.md)
     * [One Shot Keys](one_shot_keys.md)
     * [Pointing Device](feature_pointing_device.md)
@@ -97,7 +93,6 @@
   * Hardware Features
     * Displays
       * [HD44780 LCD Controller](feature_hd44780.md)
-      * [ST7565 LCD Driver](feature_st7565.md)
       * [OLED Driver](feature_oled_driver.md)
     * Lighting
       * [Backlight](feature_backlight.md)
@@ -106,9 +101,8 @@
       * [RGB Matrix](feature_rgb_matrix.md)
     * [Audio](feature_audio.md)
     * [Bluetooth](feature_bluetooth.md)
-    * [Bootmagic Lite](feature_bootmagic.md)
+    * [Bootmagic](feature_bootmagic.md)
     * [Custom Matrix](custom_matrix.md)
-    * [Digitizer](feature_digitizer.md)
     * [DIP Switch](feature_dip_switch.md)
     * [Encoders](feature_encoders.md)
     * [Haptic Feedback](feature_haptic_feedback.md)

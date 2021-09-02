@@ -16,7 +16,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
 
-    container: qmkfm/qmk_cli
+    container: qmkfm/base_container
 
     steps:
     - uses: rlespinasse/github-slug-action@v3.x
@@ -31,12 +31,12 @@ jobs:
         output: ' '
         fileOutput: ' '
 
-    - name: Run qmk format-c and qmk format-python
+    - name: Run qmk cformat and qmk pyformat
       shell: 'bash {0}'
       run: |
-        qmk format-c --core-only -n $(< ~/files.txt)
-        format_c_exit=$?
-        qmk format-python -n
-        format_python_exit=$?
+        qmk cformat --core-only -n $(< ~/files.txt)
+        cformat_exit=$?
+        qmk pyformat -n
+        pyformat_exit=$?
 
-        exit $((format_c_exit + format_python_exit))
+        exit $((cformat_exit + pyformat_exit))

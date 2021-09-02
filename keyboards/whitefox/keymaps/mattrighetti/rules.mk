@@ -1,4 +1,4 @@
-BOOTMAGIC_ENABLE = no       # Enable Bootmagic Lite
+BOOTMAGIC_ENABLE = no
 
 # Keyboard-specific features
 BACKLIGHT_ENABLE   = no

@@ -12,7 +12,7 @@ MCU = atmega32a
 BOOTLOADER = bootloadHID
 
 # build options
-BOOTMAGIC_ENABLE = no       # Enable Bootmagic Lite
+BOOTMAGIC_ENABLE = no
 MOUSEKEY_ENABLE = no
 EXTRAKEY_ENABLE = yes
 CONSOLE_ENABLE = no

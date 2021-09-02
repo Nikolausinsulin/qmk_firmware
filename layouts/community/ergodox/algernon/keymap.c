@@ -47,15 +47,15 @@ enum {
   APP_SCL2, // Social #2
 
   // Hungarian layer keys
-  HU_AACU, // Á
-  HU_OACU, // Ó
-  HU_EACU, // É
-  HU_UACU, // Ú
-  HU_IACU, // Í
-  HU_ODIA, // Ö
-  HU_UDIA, // Ü
-  HU_ODAC, // Ő
-  HU_UDAC, // Ű
+  HU_AA, // Á
+  HU_OO, // Ó
+  HU_EE, // É
+  HU_UU, // Ú
+  HU_II, // Í
+  HU_OE, // Ö
+  HU_UE, // Ü
+  HU_OEE, // Ő
+  HU_UEE, // Ű
 
   // number/symbol keys
   A_1, // 1
@@ -322,9 +322,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [HUN] = LAYOUT_ergodox(
 // left hand
  KC_NO   ,KC_NO   ,KC_NO    ,KC_NO   ,KC_NO    ,KC_NO   ,KC_NO
-,KC_NO   ,KC_NO   ,M(HU_ODAC),KC_NO   ,M(HU_UDAC),KC_NO   ,KC_NO
-,KC_NO   ,M(HU_AACU),M(HU_OACU) ,M(HU_EACU),M(HU_UACU) ,M(HU_IACU)
-,KC_NO   ,KC_NO   ,M(HU_ODIA) ,KC_NO   ,M(HU_UDIA) ,KC_NO   ,KC_NO
+,KC_NO   ,KC_NO   ,M(HU_OEE),KC_NO   ,M(HU_UEE),KC_NO   ,KC_NO
+,KC_NO   ,M(HU_AA),M(HU_OO) ,M(HU_EE),M(HU_UU) ,M(HU_II)
+,KC_NO   ,KC_NO   ,M(HU_OE) ,KC_NO   ,M(HU_UE) ,KC_NO   ,KC_NO
 ,KC_NO   ,KC_NO   ,KC_NO    ,KC_NO   ,KC_NO
 
                                              ,KC_NO   ,KC_NO
@@ -588,23 +588,23 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
         break;
 
         /* Hungarian layer */
-      case HU_AACU:
+      case HU_AA:
         return ang_do_hun (record, KC_QUOT, KC_A);
-      case HU_OACU:
+      case HU_OO:
         return ang_do_hun (record, KC_QUOT, KC_O);
-      case HU_EACU:
+      case HU_EE:
         return ang_do_hun (record, KC_QUOT, KC_E);
-      case HU_UACU:
+      case HU_UU:
         return ang_do_hun (record, KC_QUOT, KC_U);
-      case HU_IACU:
+      case HU_II:
         return ang_do_hun (record, KC_QUOT, KC_I);
-      case HU_ODIA:
+      case HU_OE:
         return ang_do_hun (record, KC_DQT, KC_O);
-      case HU_UDIA:
+      case HU_UE:
         return ang_do_hun (record, KC_DQT, KC_U);
-      case HU_ODAC:
+      case HU_OEE:
         return ang_do_hun (record, KC_EQL, KC_O);
-      case HU_UDAC:
+      case HU_UEE:
         return ang_do_hun (record, KC_EQL, KC_U);
 
         /* Plover base */

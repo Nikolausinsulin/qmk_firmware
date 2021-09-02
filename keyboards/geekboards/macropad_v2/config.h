@@ -41,7 +41,7 @@
 #define WS2812_DMA_CHANNEL 3
 
 #ifdef RGB_MATRIX_ENABLE
-#define RGB_MATRIX_KEYPRESSES
+#define RGB_MATRIX_KEYPRESSES 
 #define RGB_MATRIX_FRAMEBUFFER_EFFECTS
 #define DISABLE_RGB_MATRIX_ALPHAS_MODS
 #define DISABLE_RGB_MATRIX_BAND_SAT
@@ -67,9 +67,8 @@
 #define RGB_MATRIX_STARTUP_SPD 30
 #endif //RGB_MATRIX_ENABLE
 
-#define RGB_DISABLE_WHEN_USB_SUSPENDED
+#define RGB_DISABLE_WHEN_USB_SUSPENDED true
 #define WAIT_FOR_USB
-#define USB_POLLING_INTERVAL_MS 1
 
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
 #define DEBOUNCE 3
@@ -77,5 +76,3 @@
 /* Bootmagic Lite key configuration */
 #define BOOTMAGIC_LITE_ROW 0
 #define BOOTMAGIC_LITE_COLUMN 0
-
-#define TAP_CODE_DELAY 10

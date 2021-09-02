@@ -2,9 +2,7 @@ SRC += drashna.c \
        process_records.c
 
 ifneq ($(PLATFORM),CHIBIOS)
-    ifneq ($(strip $(LTO_SUPPORTED)), no)
-        LTO_ENABLE        = yes
-    endif
+    LTO_ENABLE        = yes
 endif
 SPACE_CADET_ENABLE    = no
 GRAVE_ESC_ENABLE      = no
@@ -29,6 +27,9 @@ CUSTOM_RGBLIGHT ?= yes
 ifeq ($(strip $(RGBLIGHT_ENABLE)), yes)
     ifeq ($(strip $(CUSTOM_RGBLIGHT)), yes)
         SRC += rgb_stuff.c
+        ifeq ($(strip $(RGBLIGHT_TWINKLE)), yes)
+            OPT_DEFS += -DRGBLIGHT_TWINKLE
+        endif
         ifeq ($(strip $(RGBLIGHT_NOEEPROM)), yes)
             OPT_DEFS += -DRGBLIGHT_NOEEPROM
         endif
@@ -64,25 +65,42 @@ ifeq ($(strip $(PROTOCOL)), VUSB)
 endif
 
 CUSTOM_OLED_DRIVER ?= yes
-ifeq ($(strip $(OLED_ENABLE)), yes)
+ifeq ($(strip $(OLED_DRIVER_ENABLE)), yes)
     ifeq ($(strip $(CUSTOM_OLED_DRIVER)), yes)
         SRC += oled_stuff.c
-        OPT_DEFS += -DCUSTOM_OLED_DRIVER_CODE
     endif
 endif
 
 ifeq ($(strip $(PIMORONI_TRACKBALL_ENABLE)), yes)
     POINTING_DEVICE_ENABLE := yes
     OPT_DEFS += -DPIMORONI_TRACKBALL_ENABLE
-    SRC += drivers/sensors/pimoroni_trackball.c
+    SRC += pimoroni_trackball.c
     QUANTUM_LIB_SRC += i2c_master.c
 endif
 
-CUSTOM_SPLIT_TRANSPORT_SYNC ?= yes
-ifeq ($(strip $(CUSTOM_SPLIT_TRANSPORT_SYNC)), yes)
-    ifeq ($(strip $(SPLIT_KEYBOARD)), yes)
-        QUANTUM_LIB_SRC += transport_sync.c
-        OPT_DEFS += -DCUSTOM_SPLIT_TRANSPORT_SYNC
+CUSTOM_SPLIT_TRANSPORT ?= yes
+ifeq ($(strip $(SPLIT_KEYBOARD)), yes)
+    ifneq ($(strip $(SPLIT_TRANSPORT)), custom)
+        ifeq ($(strip $(CUSTOM_SPLIT_TRANSPORT)), yes)
+            SPLIT_TRANSPORT = custom
+            QUANTUM_LIB_SRC += drashna_transport.c
+            OPT_DEFS += -DDRASHNA_CUSTOM_TRANSPORT
+            # Unused functions are pruned away, which is why we can add multiple drivers here without bloat.
+            ifeq ($(PLATFORM),AVR)
+                ifneq ($(NO_I2C),yes)
+                    QUANTUM_LIB_SRC += i2c_master.c \
+                                    i2c_slave.c
+                endif
+            endif
+
+            SERIAL_DRIVER ?= bitbang
+            OPT_DEFS += -DSERIAL_DRIVER_$(strip $(shell echo $(SERIAL_DRIVER) | tr '[:lower:]' '[:upper:]'))
+            ifeq ($(strip $(SERIAL_DRIVER)), bitbang)
+                QUANTUM_LIB_SRC += serial.c
+            else
+                QUANTUM_LIB_SRC += serial_$(strip $(SERIAL_DRIVER)).c
+            endif
+        endif
     endif
 endif
 

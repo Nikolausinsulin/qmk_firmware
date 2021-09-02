@@ -2,7 +2,7 @@
 #include <string.h>
 #include "oled.h"
 
-#ifdef OLED_ENABLE
+#ifdef OLED_DRIVER_ENABLE
 void render_host_led_state(void) { oled_write(read_host_led_state(), false); }
 
 void render_layer_state(void) {
@@ -52,4 +52,4 @@ void oled_task_user(void) {
         render_logo();
     }
 }
-#endif  // OLED_ENABLE
+#endif  // OLED_DRIVER_ENABLE

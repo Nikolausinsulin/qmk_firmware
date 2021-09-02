@@ -57,7 +57,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 }
 
 
-#ifdef OLED_ENABLE
+#ifdef OLED_DRIVER_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) { return OLED_ROTATION_270; }
 
 

@@ -15,8 +15,8 @@ CUSTOM_MATRIX 		= yes
 EXTRAKEY_ENABLE		= yes
 CONSOLE_ENABLE  	= yes
 COMMAND_ENABLE		= yes
-BOOTMAGIC_ENABLE = lite     # Enable Bootmagic Lite
+BOOTMAGIC_ENABLE = lite
 
-DEBOUNCE_TYPE = sym_eager_pr
+DEBOUNCE_TYPE  = eager_pr
 SRC += matrix.c
 QUANTUM_LIB_SRC += i2c_master.c

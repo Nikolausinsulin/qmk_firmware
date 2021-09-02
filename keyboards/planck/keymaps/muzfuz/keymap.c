@@ -118,7 +118,7 @@ float plover_song[][2] = SONG(PLOVER_SOUND);
 float plover_gb_song[][2] = SONG(PLOVER_GOODBYE_SOUND);
 #endif
 
-layer_state_t layer_state_set_user(layer_state_t state)
+uint32_t layer_state_set_user(uint32_t state)
 {
   return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
@@ -177,7 +177,8 @@ uint16_t muse_counter = 0;
 uint8_t muse_offset = 70;
 uint16_t muse_tempo = 50;
 
-bool encoder_update_user(uint8_t index, bool clockwise) {
+bool encoder_update(bool clockwise)
+{
   if (muse_mode)
   {
     if (IS_LAYER_ON(_RAISE))
@@ -229,7 +230,8 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     return true;
 }
 
-bool encoder_update_user(uint8_t index, bool clockwise) {
+void dip_update(uint8_t index, bool active)
+{
   switch (index)
   {
   case 0:
@@ -261,7 +263,6 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 #endif
     }
   }
-  return true;
 }
 
 void matrix_scan_user(void)

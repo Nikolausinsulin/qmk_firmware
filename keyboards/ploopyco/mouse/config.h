@@ -81,6 +81,3 @@
 #define RGBLIGHT_EFFECT_RAINBOW_SWIRL
 
 // #define DEBUG_LED_PIN F7
-
-/* PMW3360 Settings */
-#define PMW3360_CS_PIN B0

@@ -30,7 +30,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 }
 
 // Encoder click function
-bool dip_switch_update_user(uint8_t index, bool active) {
+void dip_switch_update_user(uint8_t index, bool active) {
     switch (index) {
     /* First encoder */
     case 0:
@@ -39,5 +39,4 @@ bool dip_switch_update_user(uint8_t index, bool active) {
         }
         break;
     }
-    return true;
 }

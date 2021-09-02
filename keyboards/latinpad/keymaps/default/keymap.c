@@ -48,7 +48,7 @@ static void render_logo(void) {
     oled_write_P(qmk_logo, false);
 }
 
-#ifdef OLED_ENABLE
+#ifdef OLED_DRIVER_ENABLE
 void oled_task_user(void) { render_logo(); }
 #endif
 

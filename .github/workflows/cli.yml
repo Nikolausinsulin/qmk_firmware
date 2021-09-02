@@ -16,7 +16,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    container: qmkfm/qmk_cli
+    container: qmkfm/base_container
 
     steps:
     - uses: actions/checkout@v2
@@ -25,4 +25,4 @@ jobs:
     - name: Install dependencies
       run: pip3 install -r requirements-dev.txt
     - name: Run tests
-      run: qmk pytest
+      run: bin/qmk pytest

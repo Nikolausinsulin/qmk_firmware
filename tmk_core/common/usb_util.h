@@ -17,6 +17,6 @@
 
 #include <stdbool.h>
 
-void usb_disconnect(void);
+void usb_disable(void);
 bool usb_connected_state(void);
 bool usb_vbus_state(void);

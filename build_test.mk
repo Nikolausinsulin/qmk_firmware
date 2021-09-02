@@ -24,6 +24,7 @@ GTEST_INTERNAL_INC :=\
 
 $(GTEST_OUTPUT)_SRC :=\
 	googletest/src/gtest-all.cc\
+	googletest/src/gtest_main.cc\
 	googlemock/src/gmock-all.cc
 
 $(GTEST_OUTPUT)_DEFS :=
@@ -34,8 +35,7 @@ CREATE_MAP := no
 
 VPATH +=\
 	$(LIB_PATH)/googletest\
-	$(LIB_PATH)/googlemock\
-	$(LIB_PATH)/printf
+	$(LIB_PATH)/googlemock
 
 all: elf
 
@@ -43,28 +43,17 @@ VPATH += $(COMMON_VPATH)
 PLATFORM:=TEST
 PLATFORM_KEY:=test
 
-ifeq ($(strip $(DEBUG)), 1)
-CONSOLE_ENABLE = yes
-endif
-
 ifneq ($(filter $(FULL_TESTS),$(TEST)),)
 include tests/$(TEST)/rules.mk
 endif
 
 include common_features.mk
 include $(TMK_PATH)/common.mk
-include $(QUANTUM_PATH)/debounce/tests/rules.mk
 include $(QUANTUM_PATH)/sequencer/tests/rules.mk
 include $(QUANTUM_PATH)/serial_link/tests/rules.mk
-include $(TMK_PATH)/common/test/rules.mk
 ifneq ($(filter $(FULL_TESTS),$(TEST)),)
 include build_full_test.mk
 endif
-
-$(TEST)_SRC += \
-	tests/test_common/main.c \
-	$(LIB_PATH)/printf/printf.c \
-	$(QUANTUM_PATH)/logging/print.c
 
 $(TEST_OBJ)/$(TEST)_SRC := $($(TEST)_SRC)
 $(TEST_OBJ)/$(TEST)_INC := $($(TEST)_INC) $(VPATH) $(GTEST_INC)

@@ -14,7 +14,7 @@ BOOTLOADER = bootloadHID
 # Build Options
 #   change yes to no to disable
 #
-BOOTMAGIC_ENABLE = no       # Enable Bootmagic Lite
+BOOTMAGIC_ENABLE = no
 MOUSEKEY_ENABLE = no
 EXTRAKEY_ENABLE = yes
 CONSOLE_ENABLE = no

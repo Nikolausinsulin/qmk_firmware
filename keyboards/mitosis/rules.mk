@@ -14,7 +14,7 @@ BOOTLOADER = caterina
 # Build Options
 #   comment out to disable the options.
 #
-BOOTMAGIC_ENABLE = no       # Enable Bootmagic Lite
+#BOOTMAGIC_ENABLE = full	# Virtual DIP switch configuration
 MOUSEKEY_ENABLE = yes	# Mouse keys
 EXTRAKEY_ENABLE = yes	# Audio control and System control
 CONSOLE_ENABLE = yes	# Console for debug
@@ -24,7 +24,7 @@ CUSTOM_MATRIX = yes    # Remote matrix from the wireless bridge
 # SLEEP_LED_ENABLE = yes  # Breathing sleep LED during USB suspend
 NKRO_ENABLE = yes		# USB Nkey Rollover - not yet supported in LUFA
 # BACKLIGHT_ENABLE = yes  # Enable keyboard backlight functionality
-MIDI_ENABLE = no              # MIDI support
+# MIDI_ENABLE = yes 		# MIDI controls
 UNICODE_ENABLE = yes 		# Unicode
 # BLUETOOTH_ENABLE = yes # Enable Bluetooth with the Adafruit EZ-Key HID
 

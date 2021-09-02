@@ -4,7 +4,7 @@ void matrix_init_user(void) {
   rgblight_setrgb(0xFF, 0x00, 0x00);
 };
 
-layer_state_t layer_state_set_user(layer_state_t state) {
+uint32_t layer_state_set_user(uint32_t state) {
   switch (biton32(state)) {
     case 0:
       rgblight_setrgb (0xFF, 0x00, 0x00);
