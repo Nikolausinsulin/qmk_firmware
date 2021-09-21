@@ -83,13 +83,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         break;
     case ALT_TAB:
       if (record->event.pressed) {
+        SEND_STRING("alttab triggerd");
         if (!is_alt_tab_active) {
           is_alt_tab_active = true;
           register_code(KC_LALT);
         }
         alt_tab_timer = timer_read();
         register_code(KC_TAB);
-      } else {
+      } else {    
         unregister_code(KC_TAB);
       }
       break;
