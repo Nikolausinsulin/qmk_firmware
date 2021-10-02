@@ -59,31 +59,32 @@ enum custom_keycodes {
     ALT_TAB = SAFE_RANGE,
     CIRCUM,
     BACKTICK,
+    MINMZE,
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
     case BACKTICK:
-        if (record->event.pressed) {
-            // when keycode QMKBEST is pressed
-            SEND_STRING(SS_DOWN(X_LSFT) SS_TAP(X_EQL) SS_TAP(X_EQL) SS_UP(X_LSFT) SS_TAP(X_BSPACE));
-            //SEND_STRING(SS_TAP(X_EQL));
-        } else {
-            // when keycode QMKBEST is released
-        }
-        break;
+      if (record->event.pressed) {
+          // when keycode QMKBEST is pressed
+          SEND_STRING(SS_DOWN(X_LSFT) SS_TAP(X_EQL) SS_TAP(X_EQL) SS_UP(X_LSFT) SS_TAP(X_BSPACE));
+          //SEND_STRING(SS_TAP(X_EQL));
+      } else {
+          // when keycode QMKBEST is released
+      }
+      break;
     case CIRCUM:
-        if (record->event.pressed) {
-            // when keycode QMKBEST is pressed
-            SEND_STRING(SS_TAP(X_GRAVE) SS_TAP(X_GRAVE) SS_TAP(X_BSPACE));
-            //SEND_STRING(SS_TAP(X_EQL));
-        } else {
-            // when keycode QMKBEST is released
-        }
-        break;
+      if (record->event.pressed) {
+          // when keycode QMKBEST is pressed
+          SEND_STRING(SS_TAP(X_GRAVE) SS_TAP(X_GRAVE) SS_TAP(X_BSPACE));
+          //SEND_STRING(SS_TAP(X_EQL));
+      } else {
+          // when keycode QMKBEST is released
+      }
+      break;
     case ALT_TAB:
       if (record->event.pressed) {
-        SEND_STRING("alttab triggerd");
+        // SEND_STRING("alttab triggerd");
         if (!is_alt_tab_active) {
           is_alt_tab_active = true;
           register_code(KC_LALT);
@@ -92,6 +93,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         register_code(KC_TAB);
       } else {    
         unregister_code(KC_TAB);
+      }
+      break;
+    case MINMZE: 
+    // minimize all windows
+      if (record->event.pressed) {
+        SEND_STRING(SS_LWIN(SS_TAP(X_M)));
+      } else {    
+        // 
       }
       break;
     /*
@@ -128,6 +137,10 @@ void matrix_scan_user(void) {
         // windows snipping tool
         SEND_STRING(SS_LWIN(SS_LSFT(SS_TAP(X_S))));
     }
+    SEQ_FOUR_KEYS(KC_T, KC_A, KC_S, KC_K) {
+        // windows task manager
+        SEND_STRING(SS_LCTL(SS_LSFT(SS_TAP(X_ESC))));
+    }    
 
     SEQ_FOUR_KEYS(KC_C, KC_A, KC_P, KC_S) {
       // toggle capslock
@@ -228,9 +241,11 @@ void matrix_scan_user(void) {
       // nav layer
       layer_on(5);
     }
-    SEQ_THREE_KEYS(KC_G, KC_T, KC_A) {
-      // gta layer
-      layer_on(6);
+
+    // KEYBOARD COMMANDS
+    SEQ_FIVE_KEYS(KC_R, KC_E, KC_S, KC_E, KC_T) {
+      // reset keyboard into bootloader mode
+      reset_keyboard();
     }
     
 
@@ -272,33 +287,33 @@ combo_t key_combos[COMBO_COUNT] = {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [0] = LAYOUT(
-    _______,    _______,          _______,            _______,    _______,        _______,    _______,                                _______,    _______,    _______,    _______,    _______,    _______,    _______,
-    _______,    TD(tapdanceEscAltF4), KC_X,           KC_V,       KC_L,           KC_C,    KC_W,                                      KC_K,           KC_H,   KC_G,       KC_F,       KC_Q,   DE_SS, _______,    
-    _______,    KC_TAB,           KC_U,               KC_I,       KC_A,           KC_E,    KC_O,                                      KC_S,           KC_N,   KC_R,       KC_T,       KC_D,   DE_Y, _______,    
-    _______,    KC_LCTRL,         DE_UE,              DE_OE,      DE_AE,          KC_P,    DE_Z,                                      KC_B,           KC_M,   KC_COMMA,   KC_DOT,     KC_J,   KC_LEAD, _______,    
-                                                                KC_BSPACE,    TD(tapdanceSpace),   KC_DOWN,          MO(2), OSM(MOD_LSFT), OSL(1)
-  ),  
+    _______,    _______,          _______,            _______,    _______,        TO(2),    KC_LEAD,                                KC_LEAD,    _______,    _______,    _______,    _______,    _______,    _______,
+    _______,    TD(tapdanceEscAltF4), KC_X,           KC_V,       KC_L,           KC_C,    KC_W,                                      KC_K,           KC_H,   KC_G,       KC_F,       KC_Q,   DE_SS, KC_MS_WH_UP,    
+    ALT_TAB,    KC_TAB,           KC_U,               KC_I,       KC_A,           KC_E,    KC_O,                                      KC_S,           KC_N,   KC_R,       KC_T,       KC_D,   DE_Y, KC_MS_WH_DOWN,    
+    MINMZE,     KC_LCTRL,         DE_UE,              DE_OE,      DE_AE,          KC_P,    DE_Z,                                      KC_B,           KC_M,   KC_COMMA,   KC_DOT,     KC_J,   _______, _______,    
+                                                                KC_BSPACE,    TD(tapdanceSpace),   KC_DOWN,                 MO(2), OSM(MOD_LSFT), OSL(1)
+  ),   
 // special signs layer
 [1] = LAYOUT(
-    _______,    _______,          _______,            _______,    _______,        _______,    _______,                                _______,    _______,    _______,    _______,    _______,    _______,    _______,
-    _______,    _______,            DE_AT,              DE_UNDS,           DE_LBRC,            DE_RBRC,             CIRCUM,                                     DE_EXLM,        DE_LESS,      DE_MORE,     DE_EQL,   DE_AMPR,            _______,_______,    
-    _______,    _______,            DE_BSLS,            DE_SLSH,           DE_LCBR,            DE_RCBR,             DE_ASTR,                                    DE_QST,         DE_LPRN,      DE_RPRN,     DE_MINS,  DE_COLN,            _______,_______,    
-    _______,    _______,            DE_HASH,            DE_DLR,            DE_PIPE,            DE_TILD,             BACKTICK,                                   DE_PLUS,        DE_PERC,      DE_DQOT,     DE_QUOT,  DE_SCLN,            _______,_______,    
-                                                                            _______,    _______,    _______,            _______,    _______,   _______
+    _______,    _______,     _______,       _______,           _______,            _______,             _______,                                    _______,        _______,      _______,     _______,   _______,    _______,    _______,
+    _______,    _______,     DE_AT,         DE_UNDS,           DE_LBRC,            DE_RBRC,             CIRCUM,                                     DE_EXLM,        DE_LESS,      DE_MORE,     DE_EQL,    DE_AMPR,            _______,_______,    
+    _______,    _______,     DE_BSLS,       DE_SLSH,           DE_LCBR,            DE_RCBR,             DE_ASTR,                                    DE_QST,         DE_LPRN,      DE_RPRN,     DE_MINS,   DE_COLN,            _______,_______,    
+    _______,    _______,     DE_HASH,       DE_DLR,            DE_PIPE,            DE_TILD,             BACKTICK,                                   DE_PLUS,        DE_PERC,      DE_DQOT,     DE_QUOT,   DE_SCLN,            _______,_______,    
+                                                                            KC_DEL,    _______,    _______,                                        _______,    _______,   _______
 ), 
 // numpad and arrows layer
 [2] = LAYOUT(
     _______,    _______,          _______,            _______,    _______,        _______,    _______,                                _______,    _______,    _______,    _______,    _______,    _______,    _______,
-    _______,    _______,            _______,             KC_7,             KC_8,    KC_9,  _______,                                    _______,          C(KC_LEFT), KC_UP,         C(KC_RIGHT),   KC_PGUP,    _______,_______,    
-    _______,    KC_LSFT,            KC_DOT,              KC_4,             KC_5,    KC_6,  _______,                                    KC_HOME,          KC_LEFT,    KC_DOWN,       KC_RIGHT,      KC_PGDOWN,   KC_END,_______,    
-    _______,    _______,            KC_COMMA,            KC_1,             KC_2,    KC_3,  _______,                                    _______,          _______,    _______,       _______,       _______,    _______,_______,    
-                                                                _______,       KC_0,    _______,         _______,    _______,   _______
+    _______,    TO(0),              _______,             KC_7,             KC_8,    KC_9,  _______,                                    _______,          C(KC_LEFT), KC_UP,         C(KC_RIGHT),   _______,    KC_PGUP,_______,    
+    _______,    _______,            _______,             KC_4,             KC_5,    KC_6,  _______,                                    KC_HOME,          KC_LEFT,    KC_DOWN,       KC_RIGHT,      KC_END,   KC_PGDOWN,_______,    
+    _______,    _______,            _______,             KC_1,             KC_2,    KC_3,  _______,                                    _______,          _______,    _______,       _______,       _______,    _______,_______,    
+                                                                KC_COMMA,       KC_0,    KC_DOT,         _______,    _______,   _______
 ), 
-// umlaut layer currently not in use
+// layer currently not in use
 [3] = LAYOUT(
     _______,    _______,          _______,            _______,    _______,        _______,    _______,                                _______,    _______,    _______,    _______,    _______,    _______,    _______,
     _______,    _______,            _______,            _______,    _______,        _______, _______,                                   _______,        _______, _______,   _______, _______, _______,_______,    
-    _______,    _______,            DE_UE,              _______,    DE_AE,          _______, DE_OE,                                     DE_SS,          _______, _______,   _______, _______, _______,_______,    
+    _______,    _______,            _______,              _______,    _______,          _______, _______,                                     _______,          _______, _______,   _______, _______, _______,_______,    
     _______,    _______,            _______,            _______,    _______,        _______, _______,                                   _______,        _______, _______,   _______, _______, _______,_______,    
                                                                             _______,    _______,    _______,    _______,    _______,   _______
 ), 
@@ -388,13 +403,6 @@ static td_tap_t endhometap_state = {
     .is_press_action = true,
     .state = TD_NONE
 };
-  
-/*
-static td_tap_t tabalttabtap_state = {
-    .is_press_action = true,
-    .state = TD_NONE
-}; 
-*/
 
 static td_tap_t escaltf4tap_state = {
     .is_press_action = true,
@@ -446,30 +454,6 @@ void endhome_reset(qk_tap_dance_state_t *state, void *user_data) {
     }
     endhometap_state.state = TD_NONE;
 }
- /*
-void tabalttab_finished(qk_tap_dance_state_t *state, void *user_data) {
-    tabalttabtap_state.state = cur_dance(state);
-    switch (tabalttabtap_state.state) {
-        case TD_SINGLE_TAP: tap_code(KC_TAB); break;
-        case TD_SINGLE_HOLD: tap_code(ALT_TAB); break;
-        case TD_DOUBLE_TAP: tap_code(KC_TAB); tap_code(KC_TAB); break;
-        case TD_DOUBLE_HOLD: tap_code(ALT_TAB); break;
-        default: ;
-    }
-}
-
-void tabalttab_reset(qk_tap_dance_state_t *state, void *user_data) {
-    switch (tabalttabtap_state.state) {
-        case TD_SINGLE_TAP: unregister_code(KC_TAB); break;
-        case TD_SINGLE_HOLD: unregister_code(ALT_TAB); break;
-        case TD_DOUBLE_TAP: unregister_code(KC_TAB); break;
-        case TD_DOUBLE_HOLD: unregister_code(ALT_TAB); 
-        default: ;
-    }
-    tabalttabtap_state.state = TD_NONE;
-}
-
-*/
 
 
 void escaltf4_finished(qk_tap_dance_state_t *state, void *user_data) {
@@ -497,7 +481,6 @@ void escaltf4_reset(qk_tap_dance_state_t *state, void *user_data) {
 qk_tap_dance_action_t tap_dance_actions[] = {
     [tapdanceSpace] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, space_finished, space_reset),
     [tapdanceEndHome] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, endhome_finished, endhome_reset), 
-    //[tapdanceTabAltTab] ACTION_TAP_DANCE_FN_ADVANCED(NULL, tabalttab_finished, tabalttab_reset) //maybe here should be a , at the end
     [tapdanceEscAltF4] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, escaltf4_finished, escaltf4_reset)
 };
 
