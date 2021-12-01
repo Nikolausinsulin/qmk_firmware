@@ -268,33 +268,33 @@ void matrix_scan_user(void) {
 // when adding combos change combocount in config.h
 
 enum combos {
-  winCombo,
-  altCombo, 
+  //winCombo,
+  //altCombo, 
   superAltTabCombo, 
   shiftCombo, 
 };
 
-const uint16_t PROGMEM ueuo_combo[] = {DE_UE, DE_OE, COMBO_END};
-const uint16_t PROGMEM oeae_combo[] = {DE_OE, DE_AE, COMBO_END};
+//const uint16_t PROGMEM ueuo_combo[] = {DE_UE, DE_OE, COMBO_END};
+//const uint16_t PROGMEM oeae_combo[] = {DE_OE, DE_AE, COMBO_END};
 const uint16_t PROGMEM superalttab_combo[] = {KC_C, KC_W, COMBO_END};
 const uint16_t PROGMEM shift_combo[] = {KC_TAB, KC_U, COMBO_END};
 //const uint16_t PROGMEM layer_combo[] = {KC_C, KC_W, COMBO_END};
 
 
 combo_t key_combos[COMBO_COUNT] = {
-  [winCombo] = COMBO(ueuo_combo, KC_LWIN),
-  [altCombo] = COMBO(oeae_combo, KC_LALT), 
+  //[winCombo] = COMBO(ueuo_combo, KC_LWIN),
+  //[altCombo] = COMBO(oeae_combo, KC_LALT), 
   [superAltTabCombo] = COMBO(superalttab_combo, ALT_TAB), 
-  [shiftCombo] = COMBO(shift_combo, KC_LSHIFT)
+  [shiftCombo] = COMBO(shift_combo, KC_LSHIFT),
 };
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [0] = LAYOUT(
-    KC_MS_BTN1, KC_MS_BTN2,       KC_MS_BTN3,     _______,    TO(4),          TO(2),    KC_LEAD,                                   KC_LEAD,    _______,   _______,    _______,    _______,    _______,  _______,
-    _______,    TD(tapdanceEscAltF4), KC_X,       KC_V,       KC_L,           KC_C,     KC_W,                                      KC_K,       KC_H,      KC_G,       KC_F,       KC_Q,       DE_SS,    KC_MS_WH_UP,    
-    ALT_TAB,    KC_TAB,           KC_U,           KC_I,       KC_A,           KC_E,     KC_O,                                      KC_S,       KC_N,      KC_R,       KC_T,       KC_D,       DE_Y,     KC_MS_WH_DOWN,    
-    MINMZE,     KC_LCTRL,         DE_UE,          DE_OE,      DE_AE,          KC_P,     DE_Z,                                      KC_B,       KC_M,      KC_COMMA,   KC_DOT,     KC_J,       _______,  _______,    
+    KC_MS_BTN1, KC_MS_BTN2,       KC_MS_BTN3,         _______,      TO(4),          TO(2),    KC_LEAD,                                   KC_LEAD,    _______,   _______,    _______,    _______,    _______,  _______,
+    _______,    TD(tapdanceEscAltF4), KC_X,           KC_V,         KC_L,           KC_C,     KC_W,                                      KC_K,       KC_H,      KC_G,       KC_F,       KC_Q,       DE_SS,    KC_MS_WH_UP,    
+    ALT_TAB,    KC_TAB,           KC_U,               KC_I,         KC_A,           KC_E,     KC_O,                                      KC_S,       KC_N,      KC_R,       KC_T,       KC_D,       DE_Y,     KC_MS_WH_DOWN,    
+    MINMZE,     KC_LCTRL,         MT(MOD_LGUI, DE_UE), LALT_T(DE_OE),DE_AE,          KC_P,     DE_Z,                                      KC_B,       KC_M,      KC_COMMA,   KC_DOT,     KC_J,       _______,  _______,    
                                                                 KC_BSPACE,    TD(tapdanceSpace),   KC_DOWN,                 MO(2), OSM(MOD_LSFT), OSL(1)
   ),   
 // special signs layer
