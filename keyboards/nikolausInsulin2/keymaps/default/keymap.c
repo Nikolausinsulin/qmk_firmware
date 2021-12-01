@@ -237,7 +237,11 @@ void matrix_scan_user(void) {
       // anki layer
       layer_on(4);
     }
-    SEQ_THREE_KEYS(KC_N, KC_A, KC_V) {
+    SEQ_FIVE_KEYS(KC_Q, KC_W, KC_E, KC_R, KC_T) {
+      // nav layer
+      layer_on(3);
+    }
+    SEQ_FOUR_KEYS(KC_G, KC_A, KC_M, KC_E) {
       // nav layer
       layer_on(5);
     }
@@ -287,45 +291,53 @@ combo_t key_combos[COMBO_COUNT] = {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [0] = LAYOUT(
-    _______,    _______,          _______,            _______,    _______,        TO(2),    KC_LEAD,                                KC_LEAD,    _______,    _______,    _______,    _______,    _______,    _______,
-    _______,    TD(tapdanceEscAltF4), KC_X,           KC_V,       KC_L,           KC_C,    KC_W,                                      KC_K,           KC_H,   KC_G,       KC_F,       KC_Q,   DE_SS, KC_MS_WH_UP,    
-    ALT_TAB,    KC_TAB,           KC_U,               KC_I,       KC_A,           KC_E,    KC_O,                                      KC_S,           KC_N,   KC_R,       KC_T,       KC_D,   DE_Y, KC_MS_WH_DOWN,    
-    MINMZE,     KC_LCTRL,         DE_UE,              DE_OE,      DE_AE,          KC_P,    DE_Z,                                      KC_B,           KC_M,   KC_COMMA,   KC_DOT,     KC_J,   _______, _______,    
+    KC_MS_BTN1, KC_MS_BTN2,       KC_MS_BTN3,     _______,    TO(4),          TO(2),    KC_LEAD,                                   KC_LEAD,    _______,   _______,    _______,    _______,    _______,  _______,
+    _______,    TD(tapdanceEscAltF4), KC_X,       KC_V,       KC_L,           KC_C,     KC_W,                                      KC_K,       KC_H,      KC_G,       KC_F,       KC_Q,       DE_SS,    KC_MS_WH_UP,    
+    ALT_TAB,    KC_TAB,           KC_U,           KC_I,       KC_A,           KC_E,     KC_O,                                      KC_S,       KC_N,      KC_R,       KC_T,       KC_D,       DE_Y,     KC_MS_WH_DOWN,    
+    MINMZE,     KC_LCTRL,         DE_UE,          DE_OE,      DE_AE,          KC_P,     DE_Z,                                      KC_B,       KC_M,      KC_COMMA,   KC_DOT,     KC_J,       _______,  _______,    
                                                                 KC_BSPACE,    TD(tapdanceSpace),   KC_DOWN,                 MO(2), OSM(MOD_LSFT), OSL(1)
   ),   
 // special signs layer
 [1] = LAYOUT(
-    _______,    _______,     _______,       _______,           _______,            _______,             _______,                                    _______,        _______,      _______,     _______,   _______,    _______,    _______,
-    _______,    _______,     DE_AT,         DE_UNDS,           DE_LBRC,            DE_RBRC,             CIRCUM,                                     DE_EXLM,        DE_LESS,      DE_MORE,     DE_EQL,    DE_AMPR,            _______,_______,    
-    _______,    _______,     DE_BSLS,       DE_SLSH,           DE_LCBR,            DE_RCBR,             DE_ASTR,                                    DE_QST,         DE_LPRN,      DE_RPRN,     DE_MINS,   DE_COLN,            _______,_______,    
-    _______,    _______,     DE_HASH,       DE_DLR,            DE_PIPE,            DE_TILD,             BACKTICK,                                   DE_PLUS,        DE_PERC,      DE_DQOT,     DE_QUOT,   DE_SCLN,            _______,_______,    
+    _______,    _______,     _______,       _______,      _______,     _______,      _______,                                    _______,        _______,      _______,     _______,   _______,    _______,    _______,
+    _______,    _______,     DE_AT,         DE_UNDS,      DE_LBRC,     DE_RBRC,      CIRCUM,                                     DE_EXLM,        DE_LESS,      DE_MORE,     DE_EQL,    DE_AMPR,    _______,    _______,    
+    _______,    _______,     DE_BSLS,       DE_SLSH,      DE_LCBR,     DE_RCBR,      DE_ASTR,                                    DE_QST,         DE_LPRN,      DE_RPRN,     DE_MINS,   DE_COLN,    _______,    _______,    
+    _______,    _______,     DE_HASH,       DE_DLR,       DE_PIPE,     DE_TILD,      BACKTICK,                                   DE_PLUS,        DE_PERC,      DE_DQOT,     DE_QUOT,   DE_SCLN,    _______,    _______,    
                                                                             KC_DEL,    _______,    _______,                                        _______,    _______,   _______
 ), 
 // numpad and arrows layer
 [2] = LAYOUT(
-    _______,    _______,          _______,            _______,    _______,        _______,    _______,                                _______,    _______,    _______,    _______,    _______,    _______,    _______,
-    _______,    TO(0),              _______,             KC_7,             KC_8,    KC_9,  _______,                                    _______,          C(KC_LEFT), KC_UP,         C(KC_RIGHT),   _______,    KC_PGUP,_______,    
-    _______,    _______,            _______,             KC_4,             KC_5,    KC_6,  _______,                                    KC_HOME,          KC_LEFT,    KC_DOWN,       KC_RIGHT,      KC_END,   KC_PGDOWN,_______,    
-    _______,    _______,            _______,             KC_1,             KC_2,    KC_3,  _______,                                    _______,          _______,    _______,       _______,       _______,    _______,_______,    
-                                                                KC_COMMA,       KC_0,    KC_DOT,         _______,    _______,   _______
+    _______,    _______,     _______,      _______,       _______,  _______,    _______,                                    _______,    _______,    _______,    _______,       _______,    _______,     _______,
+    _______,    TO(0),       KC_COMMA,     KC_7,          KC_8,     KC_9,       _______,                                    _______,    C(KC_LEFT), KC_UP,      C(KC_RIGHT),   _______,    KC_PGUP,     _______,    
+    _______,    _______,     KC_DOT,       KC_4,          KC_5,     KC_6,       _______,                                    KC_HOME,    KC_LEFT,    KC_DOWN,    KC_RIGHT,      KC_END,     KC_PGDOWN,   _______,    
+    _______,    _______,     KC_0,         KC_1,          KC_2,     KC_3,       _______,                                    _______,    _______,    _______,    _______,       _______,    _______,     _______,    
+                                                                _______,       _______,    _______,                _______,    _______,   _______
 ), 
-// layer currently not in use
+// qwertz layer
 [3] = LAYOUT(
-    _______,    _______,          _______,            _______,    _______,        _______,    _______,                                _______,    _______,    _______,    _______,    _______,    _______,    _______,
-    _______,    _______,            _______,            _______,    _______,        _______, _______,                                   _______,        _______, _______,   _______, _______, _______,_______,    
-    _______,    _______,            _______,              _______,    _______,          _______, _______,                                     _______,          _______, _______,   _______, _______, _______,_______,    
-    _______,    _______,            _______,            _______,    _______,        _______, _______,                                   _______,        _______, _______,   _______, _______, _______,_______,    
+    TO(0),      _______,     KC_1,        KC_2,       KC_3,           KC_4,        KC_5,                                   KC_6,       KC_7,       KC_8,       KC_9,       KC_0,       DE_SS,    _______,
+    _______,    KC_ESC,      KC_Q,        KC_W,       KC_E,           KC_R,        KC_T,                                   DE_Z,       KC_U,       KC_I,       KC_O,       KC_P,       DE_UE,    _______,
+    _______,    _______,     KC_A,        KC_S,       KC_D,           KC_F,        KC_G,                                   KC_H,       KC_J,       KC_K,       KC_L,       KC_ENT,     DE_AE,    _______,
+    _______,    _______,     DE_Y,        KC_X,       KC_C,           KC_V,        KC_B,                                   KC_N,       KC_M,       KC_COMM,    KC_DOT,     DE_MINS,    _______,    _______,
                                                                             _______,    _______,    _______,    _______,    _______,   _______
 ), 
 // anki layer
 [4] = LAYOUT(
-    _______,    _______,          _______,            _______,    _______,        _______,    _______,                                _______,    _______,    _______,    _______,    _______,    _______,    _______,
-    _______,    TO(0),              _______,            _______,    _______,        _______, _______,                                   _______,        _______, _______,   _______, _______, _______,_______,    
-    _______,    _______,            KC_1,               KC_2,       KC_3,           KC_4,    KC_5,                                      _______,        _______, _______,   _______, _______, _______,_______,    
-    _______,    _______,            _______,            _______,    _______,        _______, _______,                                   _______,        _______, _______,   _______, _______, _______,_______,    
+    _______,    _______,     _______,     _______,    _______,        _______,    _______,                                _______,    _______,    _______,    _______,    _______,    _______,    _______,
+    _______,    TO(0),       _______,     _______,    _______,        _______,    _______,                                _______,    _______,    _______,    _______,    _______,    _______,    _______,    
+    _______,    _______,     KC_1,        KC_2,       KC_3,           KC_4,       KC_5,                                   _______,    _______,    _______,    _______,    _______,    _______,    _______,    
+    _______,    _______,     _______,     _______,    _______,        _______,    _______,                                _______,    _______,    _______,    _______,    _______,    _______,    _______,    
                                                                             _______,    _______,    _______,    _______,    _______,   _______
 ), 
-  };
+// gaming layer
+[5] = LAYOUT(
+    TO(0),      _______,     _______,     KC_1,        KC_2,       KC_3,           KC_4,        KC_5,                                   KC_6,       KC_7,       KC_8,       KC_9,       KC_0,       DE_SS, 
+    _______,    _______,     KC_TAB,      KC_Q,        KC_W,       KC_E,           KC_R,        KC_T,                                   DE_Z,       KC_U,       KC_I,       KC_O,       KC_P,       DE_UE, 
+    _______,    _______,     KC_CAPS,     KC_A,        KC_S,       KC_D,           KC_F,        KC_G,                                   KC_H,       KC_J,       KC_K,       KC_L,       KC_ENT,     DE_AE, 
+    _______,    _______,     KC_LSFT,     DE_Y,        KC_X,       KC_C,           KC_V,        KC_B,                                   KC_N,       KC_M,       KC_COMM,    KC_DOT,     DE_MINS,    _______, 
+                                                                            KC_MS_BTN1,    _______,    KC_MS_BTN2,    _______,    _______,   _______
+), 
+};
 
 
 /* 
