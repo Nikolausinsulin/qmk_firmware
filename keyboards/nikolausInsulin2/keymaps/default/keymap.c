@@ -123,12 +123,7 @@ void matrix_scan_user(void) {
     leading = false;
     leader_end();
 
-    /*
-    SEQ_ONE_KEY(KC_F) {
-      // search via ctrl f
-      SEND_STRING(SS_LCTL("f"));
-    }
-    */
+
     SEQ_TWO_KEYS(KC_S, KC_S) {
       // make windows screenshot
       SEND_STRING(SS_LWIN(SS_TAP(X_PSCREEN))); 
@@ -159,19 +154,12 @@ void matrix_scan_user(void) {
         SEND_STRING(SS_LWIN(SS_TAP(X_H)));
     }
 
-    // windows projection mode switching (multiple screens)
-    SEQ_ONE_KEY(KC_P) {
-        // windows project
-        SEND_STRING(SS_LWIN(SS_TAP(X_P)));
-    }
-
-    // Neo
+    // Neo system tray application toggle
     SEQ_THREE_KEYS(KC_N, KC_E, KC_O) {
       SEND_STRING(SS_LSFT(SS_TAP(X_PAUSE)) SS_DELAY(5) SS_TAP(X_LSFT));
     }
 
     // windows window rearrangement
-    // note how i is left arrow, a is down arrow, e is right arrow, l is up arrow
     // note how n is left arrow, r is down arrow, t is right arrow, g is up arrow
     // First group sends windowskey + direction
     SEQ_TWO_KEYS(KC_W, KC_N) {
@@ -203,22 +191,6 @@ void matrix_scan_user(void) {
 
 
     // BROWSER COMMANDS
-    SEQ_ONE_KEY(KC_U) {
-      // go backwards one page
-      SEND_STRING(SS_LALT(SS_TAP(X_LEFT)));
-    }
-    SEQ_ONE_KEY(KC_E) {
-      // go forward one page
-      SEND_STRING(SS_LALT(SS_TAP(X_RIGHT)));
-    }
-    SEQ_TWO_KEYS(KC_T, KC_N) {
-      // tab new
-      SEND_STRING(SS_LCTL("t"));
-    }
-    SEQ_TWO_KEYS(KC_T, KC_C) {
-      // tab close
-      SEND_STRING(SS_LCTL("w"));
-    }
     SEQ_TWO_KEYS(KC_T, KC_L) {
       // tab left
       SEND_STRING(SS_LCTL(SS_TAP(X_PGUP)));
@@ -238,11 +210,11 @@ void matrix_scan_user(void) {
       layer_on(4);
     }
     SEQ_FIVE_KEYS(KC_Q, KC_W, KC_E, KC_R, KC_T) {
-      // nav layer
+      // qwert layer
       layer_on(3);
     }
     SEQ_FOUR_KEYS(KC_G, KC_A, KC_M, KC_E) {
-      // nav layer
+      // gaming layer
       layer_on(5);
     }
 
