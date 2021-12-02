@@ -38,9 +38,10 @@ typedef struct {
 // Tap dance enums
 enum {
     tapdanceSpace, 
-    tapdanceEndHome,
     //tapdanceTabAltTab, 
     tapdanceEscAltF4,
+    tapdanceEndShiftEnd,
+    tapdanceHomeShiftHome, 
 };
 
 td_state_t cur_dance(qk_tap_dance_state_t *state);
@@ -279,10 +280,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ), 
 // numpad and arrows layer
 [2] = LAYOUT(
-    TO(0),      _______,     _______,      _______,       _______,  _______,    _______,                                    _______,    _______,    _______,    _______,       _______,    _______,     _______,
-    _______,    _______,     KC_COMMA,     KC_7,          KC_8,     KC_9,       _______,                                    _______,    C(KC_LEFT), KC_UP,      C(KC_RIGHT),   _______,    KC_PGUP,     _______,    
-    _______,    _______,     KC_DOT,       KC_4,          KC_5,     KC_6,       _______,                                    KC_HOME,    KC_LEFT,    KC_DOWN,    KC_RIGHT,      KC_END,     KC_PGDOWN,   _______,    
-    _______,    _______,     KC_0,         KC_1,          KC_2,     KC_3,       _______,                                    _______,    _______,    _______,    _______,       _______,    _______,     _______,    
+    TO(0),      _______,     _______,      _______,       _______,  _______,    _______,                                    _______,                  _______,    _______,    _______,       _______,                 _______,     _______,
+    _______,    _______,     KC_COMMA,     KC_7,          KC_8,     KC_9,       _______,                                    _______,                  C(KC_LEFT), KC_UP,      C(KC_RIGHT),   _______,                 KC_PGUP,     _______,    
+    _______,    _______,     KC_DOT,       KC_4,          KC_5,     KC_6,       _______,                                    TD(tapdanceHomeShiftHome), KC_LEFT,   KC_DOWN,    KC_RIGHT,      TD(tapdanceEndShiftEnd), KC_PGDOWN,   _______,    
+    _______,    _______,     KC_0,         KC_1,          KC_2,     KC_3,       _______,                                    _______,                  _______,    _______,    _______,       _______,                 _______,     _______,    
                                                                 _______,       _______,    _______,                _______,    _______,   _______
 ), 
 // qwertz layer
@@ -382,18 +383,20 @@ static td_tap_t spacetap_state = {
     .is_press_action = true,
     .state = TD_NONE
 };
-
-static td_tap_t endhometap_state = {
-    .is_press_action = true,
-    .state = TD_NONE
-};
-
 static td_tap_t escaltf4tap_state = {
     .is_press_action = true,
     .state = TD_NONE
 };
+static td_tap_t endshiftendtap_state = {
+    .is_press_action = true,
+    .state = TD_NONE
+};
+static td_tap_t homeshifthometap_state = {
+    .is_press_action = true,
+    .state = TD_NONE
+};
 
-
+// spaceEnter Tapdance
 void space_finished(qk_tap_dance_state_t *state, void *user_data) {
     spacetap_state.state = cur_dance(state);
     switch (spacetap_state.state) {
@@ -404,7 +407,6 @@ void space_finished(qk_tap_dance_state_t *state, void *user_data) {
         default: ;
     }
 }
-
 void space_reset(qk_tap_dance_state_t *state, void *user_data) {
     switch (spacetap_state.state) {
         case TD_SINGLE_TAP: unregister_code(KC_SPACE); break;
@@ -416,30 +418,7 @@ void space_reset(qk_tap_dance_state_t *state, void *user_data) {
     spacetap_state.state = TD_NONE;
 }
 
-
-void endhome_finished(qk_tap_dance_state_t *state, void *user_data) {
-    endhometap_state.state = cur_dance(state);
-    switch (endhometap_state.state) {
-        case TD_SINGLE_TAP: register_code(KC_END); break;
-        case TD_SINGLE_HOLD: register_code(KC_HOME); break;
-        case TD_DOUBLE_TAP: register_code(KC_END); register_code(KC_END); break;
-        case TD_DOUBLE_HOLD: register_code(KC_END); break;
-        default: ;
-    }
-}
-
-void endhome_reset(qk_tap_dance_state_t *state, void *user_data) {
-    switch (endhometap_state.state) {
-        case TD_SINGLE_TAP: unregister_code(KC_END); break;
-        case TD_SINGLE_HOLD: unregister_code(KC_HOME); break;
-        case TD_DOUBLE_TAP: unregister_code(KC_END); unregister_code(KC_END); break;
-        case TD_DOUBLE_HOLD: unregister_code(KC_END);
-        default: ;
-    }
-    endhometap_state.state = TD_NONE;
-}
-
-
+// escAltF4 Tapdance
 void escaltf4_finished(qk_tap_dance_state_t *state, void *user_data) {
     escaltf4tap_state.state = cur_dance(state);
     switch (escaltf4tap_state.state) {
@@ -450,7 +429,6 @@ void escaltf4_finished(qk_tap_dance_state_t *state, void *user_data) {
         default: ;
     }
 }
-
 void escaltf4_reset(qk_tap_dance_state_t *state, void *user_data) {
     switch (escaltf4tap_state.state) {
         case TD_SINGLE_TAP: unregister_code(KC_ESC); break;
@@ -460,11 +438,57 @@ void escaltf4_reset(qk_tap_dance_state_t *state, void *user_data) {
         default: ;
     }
     escaltf4tap_state.state = TD_NONE;
+} 
+
+// endShiftEnd Tapdance
+void endshiftend_finished(qk_tap_dance_state_t *state, void *user_data) {
+    endshiftendtap_state.state = cur_dance(state);
+    switch (endshiftendtap_state.state) {
+        case TD_SINGLE_TAP: tap_code(KC_END); break;
+        case TD_SINGLE_HOLD: register_code(KC_LSFT); tap_code(KC_END); unregister_code(KC_LSFT); break;
+        case TD_DOUBLE_TAP: tap_code(KC_END); break;
+        case TD_DOUBLE_HOLD: tap_code(KC_END); break;
+        default: ;
+    }
 }
+void endshiftend_reset(qk_tap_dance_state_t *state, void *user_data) {
+    switch (endshiftendtap_state.state) {
+        case TD_SINGLE_TAP: unregister_code(KC_END); break;
+        case TD_SINGLE_HOLD: unregister_code(KC_END); break;
+        case TD_DOUBLE_TAP: unregister_code(KC_END); break;
+        case TD_DOUBLE_HOLD: unregister_code(KC_END);
+        default: ;
+    }
+    endshiftendtap_state.state = TD_NONE;
+}
+
+// HomeShiftHome Tapdance
+void homeshifthome_finished(qk_tap_dance_state_t *state, void *user_data) {
+    homeshifthometap_state.state = cur_dance(state);
+    switch (homeshifthometap_state.state) {
+        case TD_SINGLE_TAP: tap_code(KC_HOME); break;
+        case TD_SINGLE_HOLD: register_code(KC_LSFT); tap_code(KC_HOME); unregister_code(KC_LSFT); break;
+        case TD_DOUBLE_TAP: tap_code(KC_HOME); break;
+        case TD_DOUBLE_HOLD: tap_code(KC_HOME); break;
+        default: ;
+    }
+}
+void homeshifthome_reset(qk_tap_dance_state_t *state, void *user_data) {
+    switch (homeshifthometap_state.state) {
+        case TD_SINGLE_TAP: unregister_code(KC_HOME); break;
+        case TD_SINGLE_HOLD: unregister_code(KC_HOME); break;
+        case TD_DOUBLE_TAP: unregister_code(KC_HOME); break;
+        case TD_DOUBLE_HOLD: unregister_code(KC_HOME);
+        default: ;
+    }
+    homeshifthometap_state.state = TD_NONE;
+}
+
 
 qk_tap_dance_action_t tap_dance_actions[] = {
     [tapdanceSpace] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, space_finished, space_reset),
-    [tapdanceEndHome] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, endhome_finished, endhome_reset), 
-    [tapdanceEscAltF4] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, escaltf4_finished, escaltf4_reset)
+    [tapdanceEscAltF4] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, escaltf4_finished, escaltf4_reset), 
+    [tapdanceEndShiftEnd] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, endshiftend_finished, endshiftend_reset), 
+    [tapdanceHomeShiftHome] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, homeshifthome_finished, homeshifthome_reset), 
 };
 
