@@ -243,22 +243,25 @@ void matrix_scan_user(void) {
 enum combos {
   //winCombo,
   //altCombo, 
-  superAltTabCombo, 
+  //superAltTabCombo, 
   shiftCombo, 
+  shiftCombo2, 
 };
 
 //const uint16_t PROGMEM ueuo_combo[] = {DE_UE, DE_OE, COMBO_END};
 //const uint16_t PROGMEM oeae_combo[] = {DE_OE, DE_AE, COMBO_END};
-const uint16_t PROGMEM superalttab_combo[] = {KC_C, KC_W, COMBO_END};
+//const uint16_t PROGMEM superalttab_combo[] = {KC_C, KC_W, COMBO_END};
 const uint16_t PROGMEM shift_combo[] = {KC_TAB, KC_U, COMBO_END};
+const uint16_t PROGMEM shift2_combo[] = {KC_TAB, KC_DOT, COMBO_END};
 //const uint16_t PROGMEM layer_combo[] = {KC_C, KC_W, COMBO_END};
 
 
 combo_t key_combos[COMBO_COUNT] = {
   //[winCombo] = COMBO(ueuo_combo, KC_LWIN),
   //[altCombo] = COMBO(oeae_combo, KC_LALT), 
-  [superAltTabCombo] = COMBO(superalttab_combo, ALT_TAB), 
+  //[superAltTabCombo] = COMBO(superalttab_combo, ALT_TAB), 
   [shiftCombo] = COMBO(shift_combo, KC_LSHIFT),
+  [shiftCombo2] = COMBO(shift2_combo, KC_LSHIFT),
 };
 
 
@@ -281,8 +284,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // numpad and arrows layer
 [2] = LAYOUT(
     TO(0),      _______,     _______,      _______,       _______,  _______,    _______,                                    _______,                  _______,    _______,    _______,       _______,                 _______,     _______,
-    _______,    _______,     KC_COMMA,     KC_7,          KC_8,     KC_9,       _______,                                    _______,                  C(KC_LEFT), KC_UP,      C(KC_RIGHT),   _______,                 KC_PGUP,     _______,    
-    _______,    _______,     KC_DOT,       KC_4,          KC_5,     KC_6,       _______,                                    TD(tapdanceHomeShiftHome), KC_LEFT,   KC_DOWN,    KC_RIGHT,      TD(tapdanceEndShiftEnd), KC_PGDOWN,   _______,    
+    _______,    _______,     KC_COMMA,     KC_7,          KC_8,     KC_9,       _______,                                    _______,                  C(KC_LEFT), KC_UP,      C(KC_RIGHT),   _______,                 _______,     _______,    
+    _______,    _______,     KC_DOT,       KC_4,          KC_5,     KC_6,       _______,                                    TD(tapdanceHomeShiftHome), KC_LEFT,   KC_DOWN,    KC_RIGHT,      TD(tapdanceEndShiftEnd), _______,     _______,    
     _______,    _______,     KC_0,         KC_1,          KC_2,     KC_3,       _______,                                    _______,                  _______,    _______,    _______,       _______,                 _______,     _______,    
                                                                 _______,       _______,    _______,                _______,    _______,   _______
 ), 
