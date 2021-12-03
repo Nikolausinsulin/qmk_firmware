@@ -271,7 +271,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,              _______,          KC_X,                 KC_V,           KC_L,           KC_C,     KC_W,                                      KC_K,       KC_H,      KC_G,       KC_F,       KC_Q,       DE_SS,    KC_MS_WH_UP,    
     ALT_TAB,              KC_TAB,           KC_U,                 KC_I,           KC_A,           KC_E,     KC_O,                                      KC_S,       KC_N,      KC_R,       KC_T,       KC_D,       DE_Y,     KC_MS_WH_DOWN,    
     MINMZE,               KC_LCTRL,         MT(MOD_LGUI, DE_UE),  LALT_T(DE_OE),  DE_AE,          KC_P,     DE_Z,                                      KC_B,       KC_M,      KC_COMMA,   KC_DOT,     KC_J,       _______,  _______,    
-                                                                KC_BSPACE,    TD(tapdanceSpace),   KC_DOWN,                 MO(2), OSM(MOD_LSFT), OSL(1)
+                                                                KC_BSPACE,    TD(tapdanceSpace),   KC_DOWN,                 TG(2), OSM(MOD_LSFT), OSL(1)
   ),   
 // special signs layer
 [1] = LAYOUT(
