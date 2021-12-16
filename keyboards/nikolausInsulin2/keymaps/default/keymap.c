@@ -52,6 +52,18 @@ void x_finished(qk_tap_dance_state_t *state, void *user_data);
 void x_reset(qk_tap_dance_state_t *state, void *user_data);
 */
 
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case SFT_T(KC_SPC):
+            return TAPPING_TERM + 1250;
+        case MT(MOD_LGUI, DE_UE):
+            return TAPPING_TERM + 200;
+        default:
+            return TAPPING_TERM;
+    }
+}
+
+
 bool is_alt_tab_active = false; //this is for super alt tab
 uint16_t alt_tab_timer = 0;
 
@@ -246,6 +258,7 @@ enum combos {
   //superAltTabCombo, 
   shiftCombo, 
   shiftCombo2, 
+  shiftComboR, 
 };
 
 //const uint16_t PROGMEM ueuo_combo[] = {DE_UE, DE_OE, COMBO_END};
@@ -253,6 +266,7 @@ enum combos {
 //const uint16_t PROGMEM superalttab_combo[] = {KC_C, KC_W, COMBO_END};
 const uint16_t PROGMEM shift_combo[] = {KC_TAB, KC_U, COMBO_END};
 const uint16_t PROGMEM shift2_combo[] = {KC_TAB, KC_DOT, COMBO_END};
+const uint16_t PROGMEM shiftR_combo[] = {KC_D, DE_Y, COMBO_END};
 //const uint16_t PROGMEM layer_combo[] = {KC_C, KC_W, COMBO_END};
 
 
@@ -262,15 +276,16 @@ combo_t key_combos[COMBO_COUNT] = {
   //[superAltTabCombo] = COMBO(superalttab_combo, ALT_TAB), 
   [shiftCombo] = COMBO(shift_combo, KC_LSHIFT),
   [shiftCombo2] = COMBO(shift2_combo, KC_LSHIFT),
+  [shiftComboR] = COMBO(shiftR_combo, KC_RSHIFT),
 };
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [0] = LAYOUT(
-    TD(tapdanceEscAltF4), KC_MS_BTN1,       KC_MS_BTN2,           KC_MS_BTN3,     TO(4),          TO(1),    KC_LEAD,                                   KC_LEAD,    _______,   _______,    _______,    _______,    _______,  _______,
-    _______,              _______,          KC_X,                 KC_V,           KC_L,           KC_C,     KC_W,                                      KC_K,       KC_H,      KC_G,       KC_F,       KC_Q,       DE_SS,    KC_MS_WH_UP,    
-    ALT_TAB,              KC_TAB,           KC_U,                 KC_I,           KC_A,           KC_E,     KC_O,                                      KC_S,       KC_N,      KC_R,       KC_T,       KC_D,       DE_Y,     KC_MS_WH_DOWN,    
-    MINMZE,               KC_LCTRL,         MT(MOD_LGUI, DE_UE),  LALT_T(DE_OE),  DE_AE,          KC_P,     DE_Z,                                      KC_B,       KC_M,      KC_COMMA,   KC_DOT,     KC_J,       _______,  _______,    
+    TD(tapdanceEscAltF4), KC_MS_BTN1,       KC_MS_BTN2,           KC_MS_BTN3,     TO(4),          TO(1),    KC_LEAD,                                   KC_LEAD,    _______,   _______,    _______,        _______,            _______,    _______,
+    _______,              _______,          KC_X,                 KC_V,           KC_L,           KC_C,     KC_W,                                      KC_K,       KC_H,      KC_G,       KC_F,           KC_Q,               DE_SS,      KC_MS_WH_UP,    
+    ALT_TAB,              KC_TAB,           KC_U,                 KC_I,           KC_A,           KC_E,     KC_O,                                      KC_S,       KC_N,      KC_R,       KC_T,           KC_D,               DE_Y,       KC_MS_WH_DOWN,    
+    MINMZE,               KC_LCTRL,         MT(MOD_LGUI, DE_UE),  LALT_T(DE_OE),  DE_AE,          KC_P,     DE_Z,                                      KC_B,       KC_M,      KC_COMMA,   RALT_T(KC_DOT), MT(MOD_RGUI, KC_J), KC_RCTRL,   _______,    
                                                                 KC_BSPACE,    TD(tapdanceSpace),   KC_DOWN,                 TG(1), OSM(MOD_LSFT), OSL(2)
   ),   
 // numpad and arrows layer
