@@ -54,10 +54,14 @@ void x_reset(qk_tap_dance_state_t *state, void *user_data);
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case SFT_T(KC_SPC):
-            return TAPPING_TERM + 1250;
         case MT(MOD_LGUI, DE_UE):
             return TAPPING_TERM + 200;
+        case LALT_T(DE_OE):
+            return TAPPING_TERM + 200;
+        case RALT_T(KC_DOT):
+            return TAPPING_TERM + 200;
+        case MT(MOD_RGUI, KC_J):
+            return TAPPING_TERM + 200; 
         default:
             return TAPPING_TERM;
     }
